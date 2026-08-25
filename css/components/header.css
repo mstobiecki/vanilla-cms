@@ -54,7 +54,7 @@
   color: var(--color-text);
 }
 
-.header-hamburger-button {
+.header-navigation-button {
   display: block;
   position: relative;
   width: 4rem;
@@ -63,4 +63,18 @@
   background-color: transparent;
   cursor: pointer;
   z-index: 200;
+}
+
+.header-navigation-close-button {
+  display: none;
+}
+
+.header-navigation-wrapper.header-navigation-open
+  ~ .header-navigation-hamburger {
+  display: none;
+}
+
+.header-navigation-wrapper.header-navigation-open
+  ~ .header-navigation-close-button {
+  display: block;
 }
