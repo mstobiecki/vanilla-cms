@@ -1,3 +1,49 @@
+:root {
+  --small-gap: 2rem;
+}
+
 .articles {
   padding: 8.8rem 0;
+  font-size: 1.6rem;
+}
+
+.articles-subtitle {
+  margin-bottom: 4rem;
+}
+
+.articles-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.articles-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.articles-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.articles-heading {
+  font-size: 2.5rem;
+}
+
+.articles-paragraph {
+  line-height: 1.6;
+}
+
+.articles-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+.articles-image {
+  width: 100%;
+  border-radius: 2rem;
 }
