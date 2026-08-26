@@ -3,7 +3,6 @@
 }
 
 .hero {
-  padding: 8.8rem 0;
   font-size: 1.8rem;
   color: var(--color-text);
 }
@@ -14,6 +13,7 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
+  padding: 8.8rem 0;
 }
 
 .hero-text {
