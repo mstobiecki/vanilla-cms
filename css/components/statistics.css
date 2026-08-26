@@ -1,0 +1,44 @@
+.statistics {
+  padding: 8.8rem 0;
+  background-color: #6741d9;
+}
+
+.statistics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+.statistics-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3rem;
+}
+
+.statistics-icon {
+  background-color: #9775fa;
+  border-radius: 2rem;
+  color: #fff;
+  padding: 3rem;
+  font-size: 3.5rem;
+}
+
+.statistics-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.statistics-number {
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: #fff;
+}
+.statistics-category {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
