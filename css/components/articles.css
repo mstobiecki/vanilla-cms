@@ -1,10 +1,6 @@
-:root {
-  --small-gap: 2rem;
-}
-
 .articles {
-  padding: 8.8rem 0;
-  font-size: 1.6rem;
+  padding: var(--small-padding-section);
+  font-size: var(--small-font-size);
 }
 
 .articles-subtitle {
@@ -14,36 +10,36 @@
 .articles-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: var(--medium-xl-gap);
 }
 
 .articles-content {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: var(--medium-gap);
 }
 
 .articles-text {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: var(--small-xl-gap);
 }
 
 .articles-heading {
-  font-size: 2.5rem;
+  font-size: var(--big-font-size);
 }
 
 .articles-paragraph {
-  line-height: 1.6;
+  line-height: var(--small-line-height);
 }
 
 .articles-meta {
   display: flex;
   flex-direction: column;
-  line-height: 1.6;
+  line-height: var(--small-line-height);
 }
 
 .articles-image {
   width: 100%;
-  border-radius: 2rem;
+  border-radius: var(--small-border-radius);
 }

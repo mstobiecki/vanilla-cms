@@ -1,3 +1,27 @@
+:root {
+  --small-padding-section: 8.8rem 0;
+  --light-purple-color: #f3f0ff;
+  --medium-purple-color: #845ef7;
+  --dark-purple-color: #6741d9;
+  --light-background-white: #f8f9fa;
+  --light-color-white: #fff;
+
+  --small-border-radius: 2rem;
+
+  --small-gap: 2rem;
+  --small-xl-gap: 3rem;
+  --medium-gap: 4rem;
+  --medium-xl-gap: 6rem;
+  --big-gap: 8rem;
+
+  --small-line-height: 1.6;
+  --medium-line-height: 1.8;
+
+  --small-font-size: 1.6rem;
+  --medium-font-size: 2rem;
+  --big-font-size: 2.5rem;
+}
+
 * {
   padding: 0;
   margin: 0;

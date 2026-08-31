@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6rem;
+  gap: var(--medium-xl-gap);
   padding: 8.8rem 0;
 }
 
@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6rem;
+  gap: var(--medium-xl-gap);
 }
 
 .hero-heading {
@@ -35,12 +35,12 @@
 
 .hero-paragraph {
   font-size: 2rem;
-  line-height: 1.8;
+  line-height: var(--medium-line-height);
 }
 
 .hero-image {
   width: 100%;
-  border-radius: 2rem;
+  border-radius: var(--small-border-radius);
 }
 
 .hero-button {
@@ -50,11 +50,11 @@
 }
 
 .hero-button-full {
-  color: #fff;
-  background-color: #845ef7;
+  color: var(--light-color-white);
+  background-color: var(--medium-purple-color);
 }
 
 .hero-button-outline {
   color: #845ef7;
-  border: 1px solid #845ef7;
+  border: 1px solid var(--medium-purple-color);
 }
