@@ -1,3 +1,41 @@
+.technologies {
+  padding: var(--small-padding-section);
+}
+
+.technologies-heading {
+  margin-bottom: 8rem;
+}
+
+.technologies-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--big-gap);
+  list-style: none;
+}
+
+.technologies-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--medium-gap);
+  text-align: center;
+}
+
+.technologies-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--small-gap);
+}
+
+.technologies-heading-text {
+  text-align: center;
+}
+
 .technologies-image {
   width: 40%;
 }
