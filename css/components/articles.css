@@ -13,6 +13,11 @@
   gap: var(--medium-xl-gap);
 }
 
+.articles-post {
+  background-color: var(--light-background-white);
+  padding: 3rem 1em;
+  border-radius: var(--small-border-radius);
+}
 .articles-content {
   display: flex;
   flex-direction: column;
@@ -37,6 +42,21 @@
   display: flex;
   flex-direction: column;
   line-height: var(--small-line-height);
+  gap: 0.5rem;
+}
+
+.articles-author {
+  display: flex;
+  gap: 1rem;
+}
+
+.articles-date {
+  display: flex;
+  gap: 1rem;
+}
+
+.articles-icon {
+  color: var(--medium-purple-color);
 }
 
 .articles-image {
