@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/components/header.css" />
+    <link rel="stylesheet" href="./css/components/footer.css" />
+    <link rel="stylesheet" href="./css/components/single-article.css" />
+    <link rel="stylesheet" href="./css//components/helpers.css" />
+    <title>Vanilla CMS</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <p>Vanilla CMS</p>
+      </div>
+      <nav class="header-navigation">
+        <div class="header-navigation-wrapper">
+          <ul class="header-navigation-list">
+            <li class="header-navigation-item">
+              <a href="#" class="header-navigation-link">Strona główna</a>
+            </li>
+            <li class="header-navigation-item">
+              <a href="#" class="header-navigation-link">O blogu</a>
+            </li>
+            <li class="header-navigation-item">
+              <a href="#" class="header-navigation-link">Kontakt</a>
+            </li>
+          </ul>
+        </div>
+        <button class="header-navigation-button header-navigation-hamburger">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-menu-2 header-hamburger-navigation"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 6l16 0" />
+            <path d="M4 12l16 0" />
+            <path d="M4 18l16 0" />
+          </svg>
+        </button>
+        <button class="header-navigation-button header-navigation-close-button">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-x"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#2c3e50"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="container">
+        <section class="single-article-wrapper">
+          <article class="single-article">
+            <header class="single-article-header">
+              <h2 class="single-article-heading">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+              <div class="single-article-info">
+                <p class="articles-date">
+                  <span class="articles-icon-wrapper">
+                    <i class="articles-icon fa-regular fa-calendar"></i>
+                  </span>
+                  <time datetime="2026-08-25">25 sierpnia 2026</time>
+                </p>
+                <p class="articles-author">
+                  <span class="articles-icon-wrapper">
+                    <i class="articles-icon fa-solid fa-user"></i>
+                  </span>
+                  admin
+                </p>
+                <p class="single-article-reading-time">6 min czytania</p>
+              </div>
+            </header>
+            <div class="single-article-container">
+              <div class="single-article-image-wrapper">
+                <img
+                  class="single-article-image"
+                  src="./img/hero-image.jpg"
+                  alt="Obraz przedstawiający komputer z monitorem, klawiaturą i myszką, a w tle ikony języków programowania"
+                />
+              </div>
+              <div class="single-article-text">
+                <p class="single-article-paragraph">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Fugit tempore, eaque molestias omnis numquam quae mollitia.
+                  Autem alias esse in. Nobis nemo dolorem numquam iste modi
+                  quaerat animi laborum minima, neque eos nisi dolores
+                  similique. Nihil commodi voluptate reiciendis et natus
+                  voluptatum animi eum qui aliquid odio, debitis rerum excepturi
+                  veritatis, quo recusandae fuga. Ex repudiandae assumenda
+                  perferendis numquam quas.
+                </p>
+              </div>
+            </div>
+            <footer class="single-article-footer">
+              <p class="single-article-footer-share">Udostępnij:</p>
+              <a class="single-article-footer-link" href="#">
+                <i class="single-article-icon fa-brands fa-facebook"></i>
+              </a>
+              <a class="single-article-footer-link" href="#">
+                <i class="single-article-icon fa-brands fa-x-twitter"></i>
+              </a>
+              <a class="single-article-footer-link" href="#">
+                <i class="single-article-icon fa-brands fa-linkedin"></i>
+              </a>
+            </footer>
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-wrapper">
+          <div class="footer-first-row">
+            <h4 class="footer-heading">Vanilla CMS</h4>
+            <p class="footer-paragraph">
+              Prosty system zarządzania treścią stworzony od podstaw w PHP,
+              JavaScript i CSS.
+            </p>
+            <div class="ready-icons">
+              <a
+                class="ready-icon-link"
+                href="https://github.com/mstobiecki/vanilla-cms"
+              >
+                <i class="ready-icon fa-brands fa-github"></i>
+              </a>
+              <a class="ready-icon-link" href="#">
+                <i class="ready-icon fa-brands fa-facebook"></i>
+              </a>
+              <a class="ready-icon-link" href="#">
+                <i class="ready-icon fa-brands fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="footer-second-row">
+            <h4 class="footer-heading">Nawigacja</h4>
+            <nav class="footer-navigation">
+              <ul class="footer-navigation-list">
+                <li class="footer-navigation-item">
+                  <a class="footer-navigation-link" href="#">Strona główna</a>
+                </li>
+                <li class="footer-navigation-item">
+                  <a class="footer-navigation-link" href="#">O blogu</a>
+                </li>
+                <li class="footer-navigation-item">
+                  <a class="footer-navigation-link" href="#">Artykuły</a>
+                </li>
+                <li class="footer-navigation-item">
+                  <a class="footer-navigation-link" href="#">Kontakt</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="footer-third-row">
+            <h4 class="footer-heading">Kontakt</h4>
+            <a href="mailto:kontakt@vanillacms.pl" class="footer-email"
+              >kontakt@vanillacms.pl</a
+            >
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            2026 &copy; Vanilla CMS. Wszelkie prawa zastrzeżone.
+          </p>
+          <p class="footer-made">
+            Stworzone z pasją w Vanilla PHP, JS oraz CSS.
+            <i class="footer-bottom-icon fa-solid fa-heart"></i>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://kit.fontawesome.com/2b2f2d7c3e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./src/js/index.js"></script>
+  </body>
+</html>
