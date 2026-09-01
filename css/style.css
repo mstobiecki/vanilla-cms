@@ -1,5 +1,7 @@
 :root {
   --small-padding-section: 8.8rem 0;
+  --medium-padding-section: 10.8rem 0;
+
   --light-purple-color: #f3f0ff;
   --medium-purple-color: #845ef7;
   --dark-purple-color: #6741d9;
@@ -44,4 +46,16 @@ body {
   max-width: 120rem;
   padding: 0 2rem;
   margin: 0 auto;
+}
+
+@media (min-width: 62em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media (min-width: 75em) {
+  html {
+    font-size: 62.5%;
+  }
 }

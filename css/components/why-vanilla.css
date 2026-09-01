@@ -42,3 +42,23 @@
   background-color: var(--light-purple-color);
   color: var(--medium-purple-color);
 }
+
+@media (min-width: 48em) {
+  .why-vanilla {
+    padding: var(--medium-padding-section);
+  }
+
+  .why-vanilla-heading {
+    margin-bottom: 12rem;
+    font-size: 3rem;
+  }
+
+  .why-vanilla-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .why-vanilla-item {
+    line-height: var(--small-line-height);
+  }
+}
