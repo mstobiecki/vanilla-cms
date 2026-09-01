@@ -47,12 +47,12 @@
 
 .articles-author {
   display: flex;
-  gap: 1rem;
+  gap: var(--small-xs-gap);
 }
 
 .articles-date {
   display: flex;
-  gap: 1rem;
+  gap: var(--small-xs-gap);
 }
 
 .articles-icon {
@@ -62,4 +62,37 @@
 .articles-image {
   width: 100%;
   border-radius: var(--small-border-radius);
+}
+
+@media (min-width: 48em) {
+  .articles {
+    padding: var(--medium-padding-section);
+  }
+
+  .articles-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
+    justify-content: center;
+    column-gap: 3rem;
+  }
+
+  .articles-text {
+    gap: 4rem;
+    grid-column: 1 / 4;
+  }
+
+  .articles-paragraph {
+    line-height: var(--medium-line-height);
+    font-size: 1.8rem;
+  }
+
+  .articles-image {
+    align-self: center;
+    grid-column: 4 / 7;
+  }
+  .articles-meta {
+    display: flex;
+    gap: var(--small-gap);
+  }
 }

@@ -39,3 +39,23 @@
 .technologies-image {
   width: 40%;
 }
+
+@media (min-width: 48em) {
+  .technologies-heading {
+    margin-bottom: 12rem;
+    font-size: 3rem;
+  }
+
+  .technologies-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .technologies-image {
+    width: 60%;
+  }
+
+  .technologies-paragraph {
+    line-height: var(--small-line-height);
+  }
+}

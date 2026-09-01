@@ -77,7 +77,7 @@
 @media (min-width: 23em) {
   .hero-buttons {
     font-size: 1.8rem;
-    gap: 3rem;
+    gap: var(--small-xl-gap);
   }
 
   .hero-button {
