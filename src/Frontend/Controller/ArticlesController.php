@@ -10,9 +10,13 @@ class ArticlesController extends AbstractController
     {
     }
 
-    public function showArticle(string $slug)
+    public function showSingleArticle(string $slug)
     {
-        var_dump('ArticlesController::showArticle');
+        $singleArticle = $this->articlesRepository->showSingleArticle(slug: $slug);
+
+        if (empty($singleArticle)) {
+            $this->error404();
+        }
 
     }
 }

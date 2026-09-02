@@ -14,7 +14,7 @@ switch ($page) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository);
-        $articlesController->showArticle('index');
+        $articlesController->showSingleArticle(slug: $slug);
 
         break;
     default:

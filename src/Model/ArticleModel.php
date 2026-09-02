@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class PagesModel
+class ArticleModel
 {
     public int $id;
     public string $title;
