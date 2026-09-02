@@ -14,4 +14,11 @@ abstract class AbstractController
 
         require __DIR__ . '/../../../views/frontend/layouts/main.view.php';
     }
+
+    protected function error404()
+    {
+        http_response_code(404);
+        require __DIR__ . '/../../../views/frontend/layouts/error404.view.php';
+        exit;
+    }
 }

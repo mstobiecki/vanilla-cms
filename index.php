@@ -10,5 +10,6 @@ switch ($page) {
         $pagesController->showPage('index');
         break;
     default:
-        echo 'error404';
+        $notFoundController = new \App\Frontend\Controller\NotFoundController();
+        $notFoundController->error404();
 }
