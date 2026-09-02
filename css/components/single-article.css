@@ -28,7 +28,12 @@
   gap: var(--small-gap);
 }
 
-.articles-icon {
+.single-article-addons {
+  display: flex;
+  gap: var(--small-xs-gap);
+}
+
+.single-article-icon {
   color: var(--medium-purple-color);
 }
 
