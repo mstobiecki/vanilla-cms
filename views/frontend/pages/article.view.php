@@ -4,7 +4,7 @@
                 <article class="single-article">
                     <header class="single-article-header">
                         <h2 class="single-article-heading">
-                            Lorem ipsum dolor sit amet consectetur.
+                            <?php echo espaceHtml($singleArticle->title); ?>
                         </h2>
                         <div class="single-article-info">
                             <p class="single-article-addons">
@@ -34,14 +34,7 @@
                         </div>
                         <div class="single-article-text">
                             <p class="single-article-paragraph">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                Fugit tempore, eaque molestias omnis numquam quae mollitia.
-                                Autem alias esse in. Nobis nemo dolorem numquam iste modi
-                                quaerat animi laborum minima, neque eos nisi dolores
-                                similique. Nihil commodi voluptate reiciendis et natus
-                                voluptatum animi eum qui aliquid odio, debitis rerum excepturi
-                                veritatis, quo recusandae fuga. Ex repudiandae assumenda
-                                perferendis numquam quas.
+                                <?php echo espaceHtml($singleArticle->content); ?>
                             </p>
                         </div>
                     </div>

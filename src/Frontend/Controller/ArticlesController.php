@@ -18,7 +18,9 @@ class ArticlesController extends AbstractController
             $this->error404();
         }
 
-        $this->render('pages/article', []);
+        $this->render('pages/article', [
+            'singleArticle' => $singleArticle,
+        ]);
 
     }
 }
