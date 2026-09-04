@@ -38,6 +38,10 @@
   line-height: var(--small-line-height);
 }
 
+.article-button-wrapper {
+  align-self: center;
+}
+
 .articles-meta {
   display: flex;
   flex-direction: column;

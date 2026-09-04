@@ -3,3 +3,11 @@
   padding: 0 3rem;
   margin: 0 auto;
 }
+
+.button-outline {
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  color: #845ef7;
+  border: 1px solid var(--medium-purple-color);
+}

@@ -17,7 +17,6 @@ switch ($page) {
         $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository);
 
         $articlesController->showSingleArticle(slug: $slug);
-        $articlesController->showAllArticles();
 
         break;
     default:
