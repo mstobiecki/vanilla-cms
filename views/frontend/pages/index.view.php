@@ -119,13 +119,13 @@
                 <article class="articles-post">
                     <div class="articles-content">
                         <div class="articles-text">
-                            <h2 class="articles-heading"><?php echo espaceHtml($singleArticle['title']); ?></h2>
+                            <h2 class="articles-heading"><?php echo espaceHtml($singleArticle->title); ?></h2>
                             <p class="articles-paragraph">
-                                <?php echo espaceHtml($singleArticle['content']); ?>
+                                <?php echo espaceHtml($singleArticle->content); ?>
                             </p>
                             <div class="article-button-wrapper">
                                 <a class="button-outline"
-                                    href="index.php?<?php echo http_build_query(['page' => 'article', 'slug' => $singleArticle['slug']]); ?>">Czytaj
+                                    href="index.php?<?php echo http_build_query(['page' => 'article', 'slug' => $singleArticle->slug]); ?>">Czytaj
                                     więcej
                                     &rightarrow;</a>
                             </div>
@@ -134,13 +134,14 @@
                                     <span class="articles-icon-wrapper">
                                         <i class="articles-icon fa-regular fa-calendar"></i>
                                     </span>
-                                    <time datetime="2026-08-25">25 sierpnia 2026</time>
+                                    <time
+                                        datetime="2026-08-25"><?php echo espaceHtml($singleArticle->createAt); ?></time>
                                 </p>
                                 <p class="articles-author">
                                     <span class="articles-icon-wrapper">
                                         <i class="articles-icon fa-solid fa-user"></i>
                                     </span>
-                                    admin
+                                    <?php echo espaceHtml($singleArticle->author); ?>
                                 </p>
                             </div>
                         </div>

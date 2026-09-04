@@ -11,19 +11,33 @@ class ArticlesRepository
     {
     }
 
+    private function arrayToModel(array $entry): ?ArticleModel
+    {
+        return new ArticleModel(
+            id: (int) $entry['id'],
+            title: (string) $entry['title'],
+            slug: (string) $entry['slug'],
+            image: (string) $entry['image'],
+            content: (string) $entry['content'],
+            createAt: (string) $entry['create_at'],
+            author: (string) $entry['author'],
+            readingTime: (int) $entry['reading_time'],
+        );
+    }
+
     public function showSingleArticle(string $slug): ?ArticleModel
     {
         $stmt = $this->pdo->prepare("SELECT * FROM `articles` WHERE `slug` = :slug");
         $stmt->bindValue(':slug', $slug, PDO::PARAM_STR);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, ArticleModel::class);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $entry = $stmt->fetch();
 
-        if (empty($entry)) {
+        if (!empty($entry)) {
+            return $this->arrayToModel($entry);
+        } else {
             return null;
         }
-
-        return $entry;
     }
 
     public function fetchAllArticles(): ?array
@@ -37,6 +51,13 @@ class ArticlesRepository
             return null;
         }
 
-        return $entries;
+        $model = [];
+        foreach ($entries as $entry) {
+            $model[] = $this->arrayToModel($entry);
+        }
+
+        return $model;
+
+
     }
 }
