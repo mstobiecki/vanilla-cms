@@ -2,10 +2,26 @@
 
 namespace App\Frontend\Controller;
 
+use App\Repository\ArticlesRepository;
+
 class PagesController extends AbstractController
 {
-    public function showPage(string $slug)
+    public function __construct(private ArticlesRepository $articlesRepository)
     {
-        $this->render('pages/index', []);
+    }
+
+    public function showIndexPage()
+    {
+        $allArticles = $this->articlesRepository->fetchAllArticles();
+        $isEmptyArticles = false;
+
+        if (empty($allArticles)) {
+            $isEmptyArticles = true;
+        }
+
+        $this->render('pages/index', [
+            'isEmptyArticles' => $isEmptyArticles,
+            'allArticles' => $allArticles
+        ]);
     }
 }

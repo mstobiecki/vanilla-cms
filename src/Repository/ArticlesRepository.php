@@ -25,4 +25,18 @@ class ArticlesRepository
 
         return $entry;
     }
+
+    public function fetchAllArticles(): ?array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `articles` ORDER BY `id` ASC");
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, ArticleModel::class);
+        $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($entries)) {
+            return null;
+        }
+
+        return $entries;
+    }
 }

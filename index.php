@@ -6,15 +6,18 @@ $page = (string) ($_GET['page'] ?? 'index');
 
 switch ($page) {
     case 'index':
-        $pagesController = new \App\Frontend\Controller\PagesController();
-        $pagesController->showPage('index');
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+        $pagesController = new \App\Frontend\Controller\PagesController($articlesRepository);
+        $pagesController->showIndexPage();
         break;
     case 'article':
         $slug = (string) ($_GET['slug'] ?? '');
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository);
+
         $articlesController->showSingleArticle(slug: $slug);
+        $articlesController->showAllArticles();
 
         break;
     default:
