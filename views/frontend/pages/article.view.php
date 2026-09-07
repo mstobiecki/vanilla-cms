@@ -1,4 +1,3 @@
-  <h4><?php var_dump($singleArticle); ?></h4>
   <main class="main">
       <div class="container">
           <section class="single-article-wrapper">

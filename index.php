@@ -17,7 +17,9 @@ switch ($page) {
         $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository);
 
         $articlesController->showSingleArticle(slug: $slug);
-
+        break;
+    case 'admin/index':
+        echo "admin::page";
         break;
     default:
         $notFoundController = new \App\Frontend\Controller\NotFoundController();
