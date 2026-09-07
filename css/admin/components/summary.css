@@ -1,0 +1,30 @@
+.summary {
+  padding: 3.6rem 0;
+}
+
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: 3rem 1.5rem;
+  font-size: var(--font-size-xs);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-primary-light);
+}
+
+.summary-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.summary-paragraph {
+  line-height: 1.6;
+  font-size: var(--font-size-medium);
+}
+
+.summary-image {
+  width: 100%;
+}
