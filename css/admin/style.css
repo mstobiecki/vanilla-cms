@@ -1,0 +1,58 @@
+:root {
+  --color-primary: #593fe6;
+  --color-primary-light: #d8d2fd;
+
+  --color-background: #fdfdfe;
+  --color-surface: #ffffff;
+  --color-surface-light: #f1f2fd;
+
+  --color-dark: #141d2e;
+  --color-dark-light: #1b2539;
+
+  --color-text: #1b2539;
+  --color-text-secondary: #747ca7;
+
+  --color-border: #e5e7f5;
+
+  --font-size-xxs: 1.4rem;
+  --font-size-xs: 1.6rem;
+  --font-size-medium: 1.8rem;
+  --font-size-large: 2rem;
+  --font-size-xl: 2.5rem;
+
+  --gap-xxs: 1rem;
+  --gap-xs: 2rem;
+  --gap-medium: 3rem;
+  --gap-large: 4rem;
+  --gap-xl: 5rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 50%;
+  background-color: #f1f3f5;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+}
+
+@media (min-width: 62em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media (min-width: 75em) {
+  html {
+    font-size: 62.5%;
+  }
+}
