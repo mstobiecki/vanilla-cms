@@ -29,6 +29,13 @@
   --border-radius-xs: 1rem;
   --border-radius-medium: 1.5rem;
   --border-radius-large: 2rem;
+
+  --background-cart-color: #f8f9fa;
+  --border-cart-style: 1px solid #e5e7f5;
+  --box-shadow-cart-style: 0 2px 8px rgba(20, 29, 46, 0.04);
+  --border-radius-cart: 1.2rem;
+
+  --padding-section-xs: 2.5rem 0;
 }
 
 * {
