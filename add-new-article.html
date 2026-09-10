@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css//components/helpers.css" />
     <link rel="stylesheet" href="./css/admin/components/header.css" />
+    <link rel="stylesheet" href="./css/admin/components/add-new-article.css" />
     <link rel="stylesheet" href="./css/admin/style.css" />
     <title>Vanilla CMS</title>
   </head>
@@ -87,6 +88,7 @@
       <section class="new-article">
         <div class="container">
           <div class="new-article-wrapper">
+            <a href="#" class="new-article-back">Cofnij</a>
             <form class="new-article-form" action="POST" action="#">
               <div class="new-article-form-container">
                 <label class="new-article-title" for="title">Tytuł</label>
@@ -101,9 +103,10 @@
               <div class="new-article-form-container">
                 <label class="new-article-title" for="content">Treść</label>
                 <textarea
-                  class="new-article-input"
+                  class="new-article-input new-article-textarea"
                   name="content"
                   id="content"
+                  placeholder="Wpisz treść artykułu"
                 ></textarea>
               </div>
               <div class="new-article-form-container">
