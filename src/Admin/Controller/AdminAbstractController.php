@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Admin\Controller;
+
+abstract class AdminAbstractController
+{
+    protected function render($view, $params)
+    {
+        extract($params);
+
+        ob_start();
+        require __DIR__ . '/../../../views/admin/' . $view . '.view.php';
+        $contents = ob_get_clean();
+
+        require __DIR__ . '/../../../views/admin/layouts/main.view.php';
+    }
+
+    protected function error404()
+    {
+        http_response_code(404);
+        require __DIR__ . '/../../../views/frontend/layouts/error404.view.php';
+        exit;
+    }
+}

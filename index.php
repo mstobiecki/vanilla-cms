@@ -25,7 +25,10 @@ switch ($route) {
         break;
 
     case 'admin/index':
-        echo "admin::page";
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController();
+        $adminPagesController->showIndexPage();
+
         break;
 
     default:
