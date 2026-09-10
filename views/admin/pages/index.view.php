@@ -68,7 +68,8 @@
                                 <i class="fast-actions-icon fa-regular fa-pen-to-square"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <p class="fast-actions-text">Dodaj nowy artykuł</p>
+                                <a href="index.php?<?php echo http_build_query(['route' => 'admin/pages/create']); ?>"
+                                    class="fast-actions-link">Dodaj nowy artykuł</a>
                             </div>
                         </li>
                         <li class="fast-actions-item">
@@ -76,7 +77,7 @@
                                 <i class="fast-actions-icon fa-regular fa-folder-open"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <p class="fast-actions-text">Dodaj nową kategorię</p>
+                                <a href="#" class="fast-actions-link">Dodaj nową kategorię</a>
                             </div>
                         </li>
                         <li class="fast-actions-item">
@@ -84,7 +85,7 @@
                                 <i class="fast-actions-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <p class="fast-actions-text">Dodaj nową stronę</p>
+                                <a href="#" class="fast-actions-link">Dodaj nową stronę</a>
                             </div>
                         </li>
                         <li class="fast-actions-item">
@@ -92,7 +93,7 @@
                                 <i class="fast-actions-icon fa-regular fa-comment-dots"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <p class="fast-actions-text">Zobacz komentarze</p>
+                                <a href="#" class="fast-actions-link">Zobacz komentarze</a>
                             </div>
                         </li>
                         <li class="fast-actions-item">
@@ -100,7 +101,7 @@
                                 <i class="fast-actions-icon fa-solid fa-gear"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <p class="fast-actions-text">Przejdź do ustawień</p>
+                                <a href="#" class="fast-actions-link">Przejdź do ustawień</a>
                             </div>
                         </li>
                     </ul>

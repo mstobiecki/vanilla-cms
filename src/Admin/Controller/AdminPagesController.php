@@ -8,4 +8,9 @@ class AdminPagesController extends AdminAbstractController
     {
         $this->render('pages/index', []);
     }
+
+    public function createArticle()
+    {
+        $this->render('pages/create-article', []);
+    }
 }

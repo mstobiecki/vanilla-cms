@@ -31,6 +31,13 @@ switch ($route) {
 
         break;
 
+    case 'admin/pages/create':
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController();
+        $adminPagesController->createArticle();
+
+        break;
+
     default:
         $notFoundController = new \App\Frontend\Controller\NotFoundController();
         $notFoundController->error404();
