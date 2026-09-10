@@ -2,14 +2,19 @@
 
 require __DIR__ . '/inc/all.inc.php';
 
-$page = (string) ($_GET['page'] ?? 'index');
+$route = (string) ($_GET['route'] ?? 'pages');
 
-switch ($page) {
-    case 'index':
+switch ($route) {
+
+    case 'pages':
+        $page = (string) ($_GET['page'] ?? 'index');
+
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $pagesController = new \App\Frontend\Controller\PagesController($articlesRepository);
+
         $pagesController->showIndexPage();
         break;
+
     case 'article':
         $slug = (string) ($_GET['slug'] ?? '');
 
@@ -18,9 +23,11 @@ switch ($page) {
 
         $articlesController->showSingleArticle(slug: $slug);
         break;
+
     case 'admin/index':
         echo "admin::page";
         break;
+
     default:
         $notFoundController = new \App\Frontend\Controller\NotFoundController();
         $notFoundController->error404();

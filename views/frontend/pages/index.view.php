@@ -125,7 +125,7 @@
                             </p>
                             <div class="article-button-wrapper">
                                 <a class="button-outline"
-                                    href="index.php?<?php echo http_build_query(['page' => 'article', 'slug' => $singleArticle->slug]); ?>">Czytaj
+                                    href="index.php?<?php echo http_build_query(['route' => 'article', 'slug' => $singleArticle->slug]); ?>">Czytaj
                                     więcej
                                     &rightarrow;</a>
                             </div>
