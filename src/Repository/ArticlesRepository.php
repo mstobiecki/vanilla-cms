@@ -61,6 +61,15 @@ class ArticlesRepository
 
     }
 
+    public function checkSlugExists(string $slug): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as `count` FROM `articles` WHERE `slug` = :slug");
+        $stmt->bindValue(':slug', $slug, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['count'] >= 1 ? true : false;
+    }
+
     public function addNewArticle(string $title, string $slug, string $content)
     {
         if (empty(trim($title))) {

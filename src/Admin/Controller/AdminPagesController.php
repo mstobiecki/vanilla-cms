@@ -39,7 +39,8 @@ class AdminPagesController extends AdminAbstractController
 
 
             try {
-                $this->articlesRepository->addNewArticle(title: $title, slug: $slug, content: $content);
+                $isSlugExists = $this->articlesRepository->checkSlugExists(slug: $slug);
+                // $this->articlesRepository->addNewArticle(title: $title, slug: $slug, content: $content);
             } catch (\InvalidArgumentException $e) {
 
             }
