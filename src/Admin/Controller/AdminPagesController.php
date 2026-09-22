@@ -20,6 +20,9 @@ class AdminPagesController extends AdminAbstractController
         if (!empty($_POST)) {
             $title = (string) ($_POST['title'] ?? '');
             $content = (string) ($_POST['content'] ?? '');
+            $image = (string) ($_POST['image'] ?? '');
+            $author = (string) ($_POST['author'] ?? '');
+            $readingTime = (int) ($_POST['readingTime'] ?? 1);
 
             $chars = [
               'ą' => 'a',
@@ -37,12 +40,30 @@ class AdminPagesController extends AdminAbstractController
             $slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
             $slug = trim($slug, '-');
 
+            $errors = [];
+            $articleData = [
+                'title' => $title,
+                'slug' => $slug,
+                'content' => $content,
+                'image' => $image,
+                'author' => $author,
+                'readingTime' => $readingTime
+            ];
 
             try {
                 $isSlugExists = $this->articlesRepository->checkSlugExists(slug: $slug);
-                // $this->articlesRepository->addNewArticle(title: $title, slug: $slug, content: $content);
-            } catch (\InvalidArgumentException $e) {
 
+                if ($isSlugExists) {
+                    $errors[] = 'W bazie danych istnieje artykuł o takim tytule. Spróbuj zmienić tytuł na inny.';
+                    return;
+                }
+
+                $this->articlesRepository->addNewArticle(articleData: $articleData);
+                header("Location: index.php?" . http_build_query(['route' => 'admin/pages']));
+                exit;
+
+            } catch (\InvalidArgumentException $e) {
+                var_dump($e->getMessage());
             }
         }
         $this->render('pages/create-article', []);

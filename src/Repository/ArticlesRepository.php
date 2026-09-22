@@ -70,14 +70,23 @@ class ArticlesRepository
         return $stmt->fetch(PDO::FETCH_ASSOC)['count'] >= 1 ? true : false;
     }
 
-    public function addNewArticle(string $title, string $slug, string $content)
+    public function addNewArticle(array $articleData)
     {
-        if (empty(trim($title))) {
-            throw new \InvalidArgumentException('Tytuł artykułu jest pusty.');
+        if (trim($articleData['title']) === '') {
+            throw new \InvalidArgumentException('Tytuł nie może być pusty.');
         }
 
-        if (empty(trim($content))) {
-            throw new \InvalidArgumentException('Treść artykułu jest pusta.');
+        if (trim($articleData['content']) === '') {
+            throw new \InvalidArgumentException('Treść nie może być pusta.');
         }
+
+        $stmt = $this->pdo->prepare("INSERT INTO `articles` (`title`, `slug`, `image`, `content`, `author`, `reading_time`) VALUES (:title, :slug, :image, :content, :author, :readingTime)");
+        $stmt->bindValue(':title', $articleData['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':slug', $articleData['slug'], PDO::PARAM_STR);
+        $stmt->bindValue(':image', $articleData['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':content', $articleData['content'], PDO::PARAM_STR);
+        $stmt->bindValue(':author', $articleData['author'], PDO::PARAM_STR);
+        $stmt->bindValue(':readingTime', $articleData['readingTime'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
