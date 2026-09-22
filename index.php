@@ -26,14 +26,18 @@ switch ($route) {
 
     case 'admin/index':
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController();
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository);
         $adminPagesController->showIndexPage();
 
         break;
 
     case 'admin/pages/create':
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController();
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository);
         $adminPagesController->createArticle();
 
         break;

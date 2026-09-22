@@ -4,7 +4,8 @@
                 <div class="new-article-wrapper">
                     <a href="index.php?<?php echo http_build_query(['route' => 'admin/index']); ?>"
                         class="new-article-back">Cofnij</a>
-                    <form class="new-article-form" action="POST" action="#">
+                    <form class="new-article-form" method="POST"
+                        action="index.php?<?php echo http_build_query(['route' => 'admin/pages/create']); ?>">
                         <div class="new-article-form-container">
                             <label class="new-article-title" for="title">Tytuł</label>
                             <input class="new-article-input" type="text" id="title" name="title"

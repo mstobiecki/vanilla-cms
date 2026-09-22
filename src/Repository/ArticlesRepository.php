@@ -60,4 +60,15 @@ class ArticlesRepository
 
 
     }
+
+    public function addNewArticle(string $title, string $slug, string $content)
+    {
+        if (empty(trim($title))) {
+            throw new \InvalidArgumentException('Tytuł artykułu jest pusty.');
+        }
+
+        if (empty(trim($content))) {
+            throw new \InvalidArgumentException('Treść artykułu jest pusta.');
+        }
+    }
 }
