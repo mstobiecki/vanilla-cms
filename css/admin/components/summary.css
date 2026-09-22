@@ -27,4 +27,25 @@
 
 .summary-image {
   width: 100%;
+  border-radius: var(--border-radius-medium);
+}
+
+@media (min-width: 36em) {
+  .summary-wrapper {
+    display: grid;
+    grid-template-columns: 40fr 50fr;
+    gap: 3rem;
+    padding: 5rem 3rem;
+  }
+
+  .summary-paragraph {
+    line-height: 1.6;
+    font-size: var(--font-size-large);
+  }
+}
+
+@media (min-width: 62em) {
+  .summary-wrapper {
+    gap: var(--medium-xl-gap);
+  }
 }

@@ -42,7 +42,7 @@ class ArticlesRepository
 
     public function fetchAllArticles(): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM `articles` ORDER BY `id` ASC");
+        $stmt = $this->pdo->prepare("SELECT * FROM `articles` ORDER BY `id` DESC");
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, ArticleModel::class);
         $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);

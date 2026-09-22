@@ -59,7 +59,7 @@ class AdminPagesController extends AdminAbstractController
                 }
 
                 $this->articlesRepository->addNewArticle(articleData: $articleData);
-                header("Location: index.php?" . http_build_query(['route' => 'admin/pages']));
+                header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
                 exit;
 
             } catch (\InvalidArgumentException $e) {
