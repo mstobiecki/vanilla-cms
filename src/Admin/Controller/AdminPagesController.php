@@ -3,11 +3,14 @@
 namespace App\Admin\Controller;
 
 use App\Repository\ArticlesRepository;
+use App\Service\ImageUploader;
 
 class AdminPagesController extends AdminAbstractController
 {
-    public function __construct(private ArticlesRepository $articlesRepository)
-    {
+    public function __construct(
+        private ArticlesRepository $articlesRepository,
+        private ImageUploader $imageUploader,
+    ) {
     }
 
     public function showIndexPage()
@@ -17,12 +20,17 @@ class AdminPagesController extends AdminAbstractController
 
     public function createArticle()
     {
-        if (!empty($_POST)) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = (string) ($_POST['title'] ?? '');
             $content = (string) ($_POST['content'] ?? '');
-            $image = (string) ($_POST['image'] ?? '');
             $author = (string) ($_POST['author'] ?? '');
             $readingTime = (int) ($_POST['readingTime'] ?? 1);
+
+            $image = '';
+
+            if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+                $image = $this->imageUploader->upload($_FILES['image']);
+            }
 
             $chars = [
               'ą' => 'a',
@@ -59,10 +67,11 @@ class AdminPagesController extends AdminAbstractController
                 }
 
                 $this->articlesRepository->addNewArticle(articleData: $articleData);
+
                 header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
                 exit;
 
-            } catch (\InvalidArgumentException $e) {
+            } catch (\InvalidArgumentException | \RuntimeException $e) {
                 var_dump($e->getMessage());
             }
         }

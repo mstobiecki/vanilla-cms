@@ -8,7 +8,7 @@ class ImageUploader
     private const ALLOWED_MIME_TYPES = [
         'image/jpeg' => 'jpg',
         'image/png' => 'png',
-        'imagewebp' => 'webp',
+        'image/webp' => 'webp',
     ];
 
     public function upload(array $file): string
@@ -36,7 +36,7 @@ class ImageUploader
 
         $fileName = bin2hex(random_bytes(16)) . '.' . $extension;
 
-        $uploadDirectory = __DIR__ . '/../../public/uploads/articles/';
+        $uploadDirectory = __DIR__ . '/../../uploads/articles/';
 
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0755, true);
@@ -48,6 +48,6 @@ class ImageUploader
             throw new \RuntimeException('Nie udało się zapisać grafiki.');
         }
 
-        return '/uplods/articles/' . $fileName;
+        return '/uploads/articles/' . $fileName;
     }
 }
