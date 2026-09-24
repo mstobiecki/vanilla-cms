@@ -68,3 +68,20 @@
   color: #228be6;
   background-color: #e7f5ff;
 }
+
+@media (min-width: 65em) {
+  .info-list {
+    /* display: grid;
+    grid-template-columns: repeat(4, min-content); */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 3rem;
+  }
+}
