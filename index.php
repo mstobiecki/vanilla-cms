@@ -34,13 +34,23 @@ switch ($route) {
 
         break;
 
-    case 'admin/pages/create':
+    case 'admin/articles/create':
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
 
         $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
         $adminPagesController->createArticle();
+
+        break;
+
+    case 'admin/articles/list':
+
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+        $imageUploader = new App\Service\ImageUploader();
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController->showAllArticles();
 
         break;
 

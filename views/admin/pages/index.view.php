@@ -68,7 +68,7 @@
                                 <i class="fast-actions-icon fa-regular fa-pen-to-square"></i>
                             </div>
                             <div class="fast-actions-text-wrapper">
-                                <a href="index.php?<?php echo http_build_query(['route' => 'admin/pages/create']); ?>"
+                                <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/create']); ?>"
                                     class="fast-actions-link">Dodaj nowy artykuł</a>
                             </div>
                         </li>

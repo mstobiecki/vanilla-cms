@@ -18,6 +18,11 @@ class AdminPagesController extends AdminAbstractController
         $this->render('pages/index', []);
     }
 
+    public function showAllArticles()
+    {
+        echo 'AdminPagesController::showAllArticles()';
+    }
+
     public function createArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
