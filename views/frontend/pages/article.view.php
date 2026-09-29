@@ -29,7 +29,7 @@
                   </header>
                   <div class="single-article-container">
                       <div class="single-article-image-wrapper">
-                          <img class="single-article-image" src="./img/hero-image.jpg"
+                          <img class="single-article-image" src="./<?php echo espaceHtml($singleArticle->image); ?>"
                               alt="Obraz przedstawiający komputer z monitorem, klawiaturą i myszką, a w tle ikony języków programowania" />
                       </div>
                       <div class="single-article-text">

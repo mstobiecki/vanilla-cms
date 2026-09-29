@@ -145,7 +145,7 @@
                                 </p>
                             </div>
                         </div>
-                        <img class="articles-image" src="./img/articles-image.jpg"
+                        <img class="articles-image" src="./<?php echo espaceHtml($singleArticle->image); ?>"
                             alt="Monitor komputera z kodem, a w tle ikony języków programowania" />
                     </div>
                 </article>
