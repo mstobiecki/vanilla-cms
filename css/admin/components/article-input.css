@@ -1,8 +1,8 @@
-.new-article-wrapper {
+.article-wrapper {
   padding: 4.6rem 0;
 }
 
-.new-article-back {
+.article-back {
   display: inline-block;
   margin-bottom: 5.6rem;
   padding: 1rem 1.5rem;
@@ -14,25 +14,25 @@
   font-size: var(--font-size-medium);
 }
 
-.new-article-form {
+.article-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--gap-medium);
 }
 
-.new-article-title {
+.article-title {
   font-size: 2.4rem;
   font-weight: 500;
 }
 
-.new-article-form-container {
+.article-form-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap-xs);
 }
 
-.new-article-input {
+.article-input {
   padding: 1.5rem 2rem;
   font-family: inherit;
   border-radius: var(--border-radius-xs);
@@ -42,18 +42,18 @@
   background-color: var(--background-cart-color);
 }
 
-.new-article-textarea {
+.article-textarea {
   resize: vertical;
   min-height: 15rem;
 }
 
-.new-article-form-container:last-child {
+.article-form-container:last-child {
   margin-top: 2rem;
   justify-self: center;
   align-items: center;
 }
 
-.new-article-button {
+.article-button {
   padding: 1rem 1.5rem;
   text-decoration: none;
   border-radius: 0.5rem;

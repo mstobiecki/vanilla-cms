@@ -93,6 +93,13 @@ class AdminPagesController extends AdminAbstractController
 
     public function editArticle()
     {
-        $this->render('pages/edit-article', []);
+        $id = (int) ($_GET['id'] ?? 0);
+        $singleArticle = $this->articlesRepository->fetchSingleArticleById(id: $id);
+
+
+
+        $this->render('pages/edit-article', [
+            'singleArticle' => $singleArticle,
+        ]);
     }
 }

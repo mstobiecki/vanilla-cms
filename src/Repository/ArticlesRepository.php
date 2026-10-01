@@ -40,6 +40,21 @@ class ArticlesRepository
         }
     }
 
+    public function fetchSingleArticleById(int $id): ?ArticleModel
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `articles` WHERE `id` = :id");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $entry = $stmt->fetch();
+
+        if (!empty($entry)) {
+            return $this->arrayToModel($entry);
+        } else {
+            return null;
+        }
+    }
+
     public function fetchAllArticles(): ?array
     {
         $stmt = $this->pdo->prepare("SELECT * FROM `articles` ORDER BY `id` DESC");

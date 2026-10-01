@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./css/admin/components/summary.css" />
     <link rel="stylesheet" href="./css/admin/components/info.css" />
     <link rel="stylesheet" href="./css//admin/components/fast-actions.css" />
-    <link rel="stylesheet" href="./css/admin/components/add-new-article.css" />
+    <link rel="stylesheet" href="./css/admin/components/article-input.css" />
     <link rel="stylesheet" href="./css/admin/components/articles-list.css" />
     <title>Vanilla CMS</title>
 </head>
