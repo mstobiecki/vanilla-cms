@@ -90,4 +90,9 @@ class AdminPagesController extends AdminAbstractController
         }
         $this->render('pages/create-article', []);
     }
+
+    public function editArticle()
+    {
+        $this->render('pages/edit-article', []);
+    }
 }

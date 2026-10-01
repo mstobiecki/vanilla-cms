@@ -27,7 +27,7 @@
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/', 'edit' => $singleArticle->id]); ?>"
+                                    <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/edit', 'id' => $singleArticle->id]); ?>"
                                         class="btn btn-edit">Edytuj</a>
                                     <button class="btn btn-delete" onclick="deleteArticle(1)">
                                         Usuń

@@ -54,6 +54,16 @@ switch ($route) {
 
         break;
 
+    case 'admin/articles/edit':
+
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+        $imageUploader = new App\Service\ImageUploader();
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController->editArticle();
+
+        break;
+
     default:
         $notFoundController = new \App\Frontend\Controller\NotFoundController();
         $notFoundController->error404();
