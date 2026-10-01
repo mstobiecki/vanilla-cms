@@ -20,7 +20,15 @@ class AdminPagesController extends AdminAbstractController
 
     public function showAllArticles()
     {
-        $this->render('pages/articles', []);
+        $allArticlesFromDb = $this->articlesRepository->fetchAllArticles();
+
+        if (empty($allArticlesFromDb)) {
+            return;
+        }
+
+        $this->render('pages/articles', [
+            'allArticlesFromDb' => $allArticlesFromDb,
+        ]);
     }
 
     public function createArticle()

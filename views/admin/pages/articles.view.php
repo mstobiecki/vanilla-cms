@@ -7,7 +7,6 @@
                     <p>Zarządzaj artykułami w swojej bazie danych</p>
                 </div>
             </div>
-
             <div class="table-wrapper">
                 <table class="articles-table">
                     <thead>
@@ -17,52 +16,26 @@
                             <th>Akcje</th>
                         </tr>
                     </thead>
-
                     <tbody>
+                        <?php foreach ($allArticlesFromDb as $singleArticle): ?>
                         <tr>
-                            <td class="article-id">1</td>
+                            <td class="article-id">
+                                <?php echo espaceHtml($singleArticle->id); ?>
+                            </td>
                             <td class="article-title">
-                                Jak stworzyć własną stronę internetową?
+                                <?php echo espaceHtml($singleArticle->title); ?>
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a href="/articles/edit/1" class="btn btn-edit">Edytuj</a>
+                                    <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/', 'edit' => $singleArticle->id]); ?>"
+                                        class="btn btn-edit">Edytuj</a>
                                     <button class="btn btn-delete" onclick="deleteArticle(1)">
                                         Usuń
                                     </button>
                                 </div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td class="article-id">2</td>
-                            <td class="article-title">
-                                10 wskazówek dotyczących CSS
-                            </td>
-                            <td>
-                                <div class="actions">
-                                    <a href="/articles/edit/2" class="btn btn-edit">Edytuj</a>
-                                    <button class="btn btn-delete" onclick="deleteArticle(2)">
-                                        Usuń
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="article-id">3</td>
-                            <td class="article-title">
-                                Nowości w świecie technologii
-                            </td>
-                            <td>
-                                <div class="actions">
-                                    <a href="/articles/edit/3" class="btn btn-edit">Edytuj</a>
-                                    <button class="btn btn-delete" onclick="deleteArticle(3)">
-                                        Usuń
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
