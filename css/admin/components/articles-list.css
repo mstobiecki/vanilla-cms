@@ -1,0 +1,135 @@
+.articles-card {
+  margin-top: 8rem;
+  background: #ffffff;
+  border: 1px solid #e5eaf1;
+  border-radius: 14px;
+  padding: 2.4rem;
+  color: #172033;
+  box-shadow: 0 4px 18px rgba(20, 35, 60, 0.04);
+}
+
+.articles-header {
+  margin-bottom: 2.2rem;
+}
+
+.articles-header h2 {
+  font-size: 2.3rem;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.articles-header p {
+  color: #64748b;
+  font-size: var(--font-size-xxs);
+  margin: 0;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e5eaf1;
+  border-radius: var(--border-radius-xs);
+}
+
+.articles-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.articles-table th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 1.6rem;
+  border-bottom: 1px solid #e5eaf1;
+}
+
+.articles-table td {
+  padding: 1.6rem;
+  font-size: var(--font-size-xxs);
+  border-bottom: 1px solid #edf0f5;
+}
+
+.articles-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.articles-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.articles-table tbody tr:hover {
+  background: #f8faff;
+}
+
+.article-id {
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+  width: 12%;
+}
+
+.article-title {
+  font-weight: 600;
+  color: #172033;
+}
+
+.actions {
+  display: flex;
+  gap: var(--gap-xxs);
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1.3rem;
+  border-radius: 7px;
+  font-size: var(--font-size-xxs);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.btn-edit:hover {
+  background: #dbeafe;
+}
+
+.btn-delete {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+}
+
+@media (max-width: 600px) {
+  .articles-card {
+    padding: 1.4rem;
+  }
+
+  .articles-table th,
+  .articles-table td {
+    padding: 1.2rem 1rem;
+  }
+
+  .article-title {
+    min-width: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.7rem 0.9rem;
+  }
+}

@@ -20,7 +20,7 @@ class AdminPagesController extends AdminAbstractController
 
     public function showAllArticles()
     {
-        echo 'AdminPagesController::showAllArticles()';
+        $this->render('pages/articles', []);
     }
 
     public function createArticle()
