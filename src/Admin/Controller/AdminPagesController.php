@@ -39,7 +39,7 @@ class AdminPagesController extends AdminAbstractController
         $author = (string) ($_POST['author'] ?? '');
         $readingTime = (int) ($_POST['readingTime'] ?? 1);
 
-        $image = '';
+        $image = $existingArticle['image'] ?? '';
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
             $image = $this->imageUploader->upload($_FILES['image']);
@@ -110,19 +110,21 @@ class AdminPagesController extends AdminAbstractController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $articleData = $this->getArticleData([
                 'image' => $singleArticle->image,
             ]);
 
             try {
-                $isSlugExists = $this->articlesRepository->checkSlugExists(slug: $articleData['slug']);
+                $isSlugExists = $this->articlesRepository->checkSlugExistsForOtherArticle(id: $id, slug: $articleData['slug']);
+
 
                 if ($isSlugExists) {
                     $errors[] = 'W bazie danych istnieje artykuł o takim tytule. Spróbuj zmienić tytuł na inny.';
                     return;
                 }
 
-                $this->articlesRepository->updateArticle(articleData: $articleData);
+                $this->articlesRepository->updateArticle(id: $id, articleData: $articleData);
 
                 header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
                 exit;

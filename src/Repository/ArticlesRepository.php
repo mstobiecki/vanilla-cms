@@ -104,4 +104,27 @@ class ArticlesRepository
         $stmt->bindValue(':readingTime', $articleData['readingTime'], PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    public function checkSlugExistsForOtherArticle(int $id, string $slug): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as `count` FROM `articles` WHERE `slug` = :slug AND `id` != :id");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':slug', $slug, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn() > 0;
+    }
+
+    public function updateArticle(int $id, array $articleData)
+    {
+        $stmt = $this->pdo->prepare("UPDATE `articles` SET `title` = :title, `slug` = :slug, `image` = :image, `content` = :content, `author` = :author, `reading_time` = :readingTime WHERE `id` = :id");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':title', $articleData['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':slug', $articleData['slug'], PDO::PARAM_STR);
+        $stmt->bindValue(':image', $articleData['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':content', $articleData['content'], PDO::PARAM_STR);
+        $stmt->bindValue(':author', $articleData['author'], PDO::PARAM_STR);
+        $stmt->bindValue(':readingTime', $articleData['readingTime'], PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
