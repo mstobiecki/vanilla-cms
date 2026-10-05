@@ -103,12 +103,13 @@ class AdminPagesController extends AdminAbstractController
     public function editArticle()
     {
         $id = (int) ($_GET['id'] ?? 0);
+        $errors = [];
+
         $singleArticle = $this->articlesRepository->fetchSingleArticleById(id: $id);
 
         if ($singleArticle === null) {
             return;
         }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $articleData = $this->getArticleData([
@@ -121,7 +122,6 @@ class AdminPagesController extends AdminAbstractController
 
                 if ($isSlugExists) {
                     $errors[] = 'W bazie danych istnieje artykuł o takim tytule. Spróbuj zmienić tytuł na inny.';
-                    return;
                 }
 
                 $this->articlesRepository->updateArticle(id: $id, articleData: $articleData);
@@ -130,12 +130,13 @@ class AdminPagesController extends AdminAbstractController
                 exit;
 
             } catch (\InvalidArgumentException | \RuntimeException $e) {
-                var_dump($e->getMessage());
+                $errors[] = $e->getMessage();
             }
         }
 
         $this->render('pages/edit-article', [
             'singleArticle' => $singleArticle,
+            'errors' => $errors,
         ]);
     }
 }

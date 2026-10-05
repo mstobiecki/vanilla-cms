@@ -10,8 +10,17 @@ $readingTimeFromDb = !empty($_POST['readingTime']) ? espaceHtml($_POST['readingT
     <section class="article">
         <div class="container">
             <div class="article-wrapper">
-                <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/list']); ?>"
-                    class="article-back">Cofnij</a>
+                <div>
+                    <a href="index.php?<?php echo http_build_query(['route' => 'admin/articles/list']); ?>"
+                        class="article-back">Cofnij</a>
+                </div>
+                <?php foreach ($errors as $error): ?>
+                <div class="article-errors">
+                    <p class=article-error>
+                        <?php echo espaceHtml($error); ?>
+                    </p>
+                </div>
+                <?php endforeach; ?>
                 <form class="article-form" enctype="multipart/form-data" method="POST"
                     action="index.php?<?php echo http_build_query(['route' => 'admin/articles/edit', 'id' => $singleArticle->id]); ?>">
                     <div class="article-form-container">
