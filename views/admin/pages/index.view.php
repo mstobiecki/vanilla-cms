@@ -20,13 +20,16 @@
             <div class="container">
                 <ul class="info-list">
                     <li class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="info-icon info-icon-sticky fa-regular fa-note-sticky"></i>
-                        </div>
-                        <div class="info-text-wrapper">
-                            <span class="info-text-number">24</span>
-                            <p class="info-text-paragraph">Artykuły</p>
-                        </div>
+                        <a class="info-item-link"
+                            href="index.php?<?php echo http_build_query(['route' => 'admin/articles/list']); ?>">
+                            <div class="info-icon-wrapper">
+                                <i class="info-icon info-icon-sticky fa-regular fa-note-sticky"></i>
+                            </div>
+                            <div class="info-text-wrapper">
+                                <span class="info-text-number">24</span>
+                                <p class="info-text-paragraph">Artykuły</p>
+                            </div>
+                        </a>
                     </li>
                     <li class="info-item">
                         <div class="info-icon-wrapper">
@@ -64,6 +67,26 @@
                     <h3 class="chart-heading">Artykuły - przegląd </h3>
                     <div style="position: relative; height: 400px;">
                         <canvas id="articlesChart"></canvas>
+                    </div>
+                    <div class="statistic-chart">
+                        <ul class="statistic-chart-list">
+                            <li class="statistic-chart-item">
+                                <span class="statistic-chart-number">24</span>
+                                <p class="statistic-chart-info">Łącznie artykułów</p>
+                            </li>
+                            <li class="statistic-chart-item">
+                                <span class="statistic-chart-number">
+                                    <span class=statistic-chart-number-special>+4</span>
+                                </span>
+                                <p class="statistic-chart-info">W tym tygodniu</p>
+                            </li>
+                            <li class="statistic-chart-item">
+                                <span class="statistic-chart-number">
+                                    <span class=statistic-chart-number-special>+18%</span>
+                                </span>
+                                <p class="statistic-chart-info">Wzrost tygodniowy</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -140,7 +163,7 @@
             'views' => 230,
         ],
     ];
-                                ?>
+                            ?>
 
 
             <script>
