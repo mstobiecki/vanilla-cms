@@ -77,7 +77,10 @@ class AdminPagesController extends AdminAbstractController
 
     public function createArticle()
     {
+        $errors = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $articleData = $this->getArticleData();
 
             try {
@@ -85,19 +88,22 @@ class AdminPagesController extends AdminAbstractController
 
                 if ($isSlugExists) {
                     $errors[] = 'W bazie danych istnieje artykuł o takim tytule. Spróbuj zmienić tytuł na inny.';
-                    return;
+
+                } else {
+
+                    $this->articlesRepository->addNewArticle(articleData: $articleData);
+
+                    header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
+                    exit;
                 }
 
-                $this->articlesRepository->addNewArticle(articleData: $articleData);
-
-                header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
-                exit;
-
             } catch (\InvalidArgumentException | \RuntimeException $e) {
-                var_dump($e->getMessage());
+                $errors[] = $e->getMessage();
             }
         }
-        $this->render('pages/create-article', []);
+        $this->render('pages/create-article', [
+            'errors' => $errors,
+        ]);
     }
 
     public function editArticle()
@@ -122,12 +128,13 @@ class AdminPagesController extends AdminAbstractController
 
                 if ($isSlugExists) {
                     $errors[] = 'W bazie danych istnieje artykuł o takim tytule. Spróbuj zmienić tytuł na inny.';
+                } else {
+
+                    $this->articlesRepository->updateArticle(id: $id, articleData: $articleData);
+
+                    header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
+                    exit;
                 }
-
-                $this->articlesRepository->updateArticle(id: $id, articleData: $articleData);
-
-                header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
-                exit;
 
             } catch (\InvalidArgumentException | \RuntimeException $e) {
                 $errors[] = $e->getMessage();

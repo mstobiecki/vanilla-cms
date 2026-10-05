@@ -117,6 +117,14 @@ class ArticlesRepository
 
     public function updateArticle(int $id, array $articleData)
     {
+        if (trim($articleData['title'] === '')) {
+            throw new \InvalidArgumentException('Tytuł nie może być pusty.');
+        }
+
+        if (trim($articleData['content']) === '') {
+            throw new \InvalidArgumentException('Treść nie może być pusta.');
+        }
+
         $stmt = $this->pdo->prepare("UPDATE `articles` SET `title` = :title, `slug` = :slug, `image` = :image, `content` = :content, `author` = :author, `reading_time` = :readingTime WHERE `id` = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':title', $articleData['title'], PDO::PARAM_STR);
