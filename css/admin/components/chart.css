@@ -1,0 +1,16 @@
+.chart {
+  padding: 4.6rem 0;
+}
+
+.chart-container {
+  padding: 3rem;
+  font-size: var(--font-size-medium);
+  border: var(--border-cart-style);
+  border-radius: var(--border-radius-cart);
+  box-shadow: var(--box-shadow-cart-style);
+  background-color: var(--background-cart-color);
+}
+
+.chart-heading {
+  margin: 2rem 0;
+}

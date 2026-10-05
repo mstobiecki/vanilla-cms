@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./css//admin/components/fast-actions.css" />
     <link rel="stylesheet" href="./css/admin/components/article-input.css" />
     <link rel="stylesheet" href="./css/admin/components/articles-list.css" />
+    <link rel="stylesheet" href="./css/admin/components/chart.css" />
     <title>Vanilla CMS</title>
 </head>
 
@@ -65,9 +66,11 @@
             <i class="header-right-side-icon header-right-side-avatar fa-solid fa-circle-user"></i>
         </div>
     </header>
-    <?php echo $contents; ?>
+
     <script src="https://kit.fontawesome.com/2b2f2d7c3e.js" crossorigin="anonymous"></script>
     <script type="module" src="./src/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <?php echo $contents; ?>
 </body>
 
 </html>

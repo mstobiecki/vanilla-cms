@@ -58,6 +58,16 @@
                 </ul>
             </div>
         </section>
+        <section class="chart">
+            <div class="container">
+                <div class="chart-container">
+                    <h3 class="chart-heading">Artykuły - przegląd </h3>
+                    <div style="position: relative; height: 400px;">
+                        <canvas id="articlesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="fast-actions">
             <div class="container">
                 <div class="fast-actions-wrapper">
@@ -107,5 +117,72 @@
                     </ul>
                 </div>
             </div>
+        </section>
+        <section>
+
+            <?php
+
+    $chartData = [
+        [
+            'date' => '2026-10-01',
+            'views' => 120,
+        ],
+        [
+            'date' => '2026-10-02',
+            'views' => 180,
+        ],
+        [
+            'date' => '2026-10-03',
+            'views' => 145,
+        ],
+        [
+            'date' => '2026-10-04',
+            'views' => 230,
+        ],
+    ];
+                                ?>
+
+
+            <script>
+            const chartData = <?= json_encode(
+                $chartData,
+                JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+            ) ?>;
+
+            const labels = chartData.map(item => item.date);
+            const views = chartData.map(item => Number(item.views));
+
+            const ctx = document.getElementById('articlesChart');
+
+            new Chart(ctx, {
+                type: 'line',
+
+                data: {
+                    labels: labels,
+
+                    datasets: [{
+                        label: 'Wyświetlenia',
+                        data: views,
+                        borderColor: 'rgb(121, 80, 242)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        backgroundColor: 'rgba(121, 80, 242, 0.15)',
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>
+
         </section>
     </main>
