@@ -209,8 +209,8 @@
         </section>
         <section class="last-activity">
             <div class="container">
-                <h3 class="last-activity-heading">Ostatnia aktywność</h3>
                 <div class="last-activity-wrapper">
+                    <h3 class="last-activity-heading">Ostatnia aktywność</h3>
                     <ul class="last-activity-list">
                         <li class="last-activity-item">
                             <div class="last-activity-icon-container">
@@ -225,13 +225,26 @@
                                 <span class="last-activity-time">14:30</span>
                             </time>
                         </li>
-                        <li class="last-activity-item">
+                        <!-- <li class="last-activity-item">
                             <div class="last-activity-icon-container">
                                 <i class="last-activity-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="last-activity-text-wrapper">
                                 <h4 class="last-activity-text-heading">Zaktualizowano artykuł</h4>
                                 <p class="last-activity-text-info">Lorem ipsum dolor sit.</p>
+                            </div>
+                            <time datetime="2026-10-07T1:30" class="last-activity-date">
+                                <span class="last-activity-date">7 października</span>
+                                <span class="last-activity-time">15:23</span>
+                            </time>
+                        </li> -->
+                        <li class="last-activity-item">
+                            <div class="last-activity-icon-container">
+                                <i class="last-activity-icon fa-regular fa-note-sticky"></i>
+                            </div>
+                            <div class="last-activity-text-wrapper">
+                                <h4 class="last-activity-text-heading">Zaktualizowano artykuł</h4>
+                                <p class="last-activity-text-info">Lorem .</p>
                             </div>
                             <time datetime="2026-10-07T1:30" class="last-activity-date">
                                 <span class="last-activity-date">7 października</span>

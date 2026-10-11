@@ -1,0 +1,29 @@
+.last-activity {
+  padding: 4.6rem 0;
+}
+
+.last-activity-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem;
+  font-size: var(--font-size-medium);
+  border: var(--border-cart-style);
+  border-radius: var(--border-radius-cart);
+  box-shadow: var(--box-shadow-cart-style);
+  background-color: var(--background-cart-color);
+}
+
+.last-activity-heading {
+  margin: 2rem 0;
+}
+
+.last-activity-list {
+  list-style: none;
+}
+
+.last-activity-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/admin/components/article-input.css" />
     <link rel="stylesheet" href="./css/admin/components/articles-list.css" />
     <link rel="stylesheet" href="./css/admin/components/chart.css" />
+    <link rel="stylesheet" href="./css/admin/components/last-activity.css" />
     <title>Vanilla CMS</title>
 </head>
 
@@ -25,15 +26,57 @@
         <div class="header-left-side-wrapper">
             <nav class="header-navigation">
                 <div class="header-navigation-wrapper">
-                    <ul class="header-navigation-list">
+                    <!-- <ul class="header-navigation-list">
                         <li class="header-navigation-item">
-                            <a href="#" class="header-navigation-link">Strona główna</a>
+                            <a href="#" class="header-navigation-link">Strona</a>
                         </li>
                         <li class="header-navigation-item">
                             <a href="#" class="header-navigation-link">O blogu</a>
                         </li>
                         <li class="header-navigation-item">
                             <a href="#" class="header-navigation-link">Kontakt</a>
+                        </li>
+                    </ul> -->
+                    <ul class="header-navigation-desktop-list">
+                        <li class="header-navigation-desktop-item">
+                            <a href="#" class="header-navigation-desktop-link">Pulpit</a>
+                        </li>
+                    </ul>
+                    <ul class="header-navigation-content-list">
+                        <li class="header-navigation-content-item">
+                            <a href="#" class="header-navigation-content-link">Artykuły</a>
+                        </li>
+                        <li class="header-navigation-content-item">
+                            <a href="#" class="header-navigation-content-link">Kategorie</a>
+                        </li>
+                        <li class="header-navigation-content-item">
+                            <a href="#" class="header-navigation-content-link">Strony</a>
+                        </li>
+                        <li class="header-navigation-content-item">
+                            <a href="#" class="header-navigation-content-link">Komentarze</a>
+                        </li>
+                    </ul>
+                    <ul class="header-navigation-users-list">
+                        <li class="header-navigation-users-item">
+                            <a href="#" class="header-navigatgion-users-link">Użytkownicy</a>
+                        </li>
+
+                        <li class="header-navigation-users-item">
+                            <a href="#" class="header-navigatgion-users-link">Profil</a>
+                        </li>
+                    </ul>
+                    <ul class="header-navigation-settings-list">
+                        <li class="header-navigation-settings-item">
+                            <a href="#" class="header-navigation-settings-link">Ustawienia</a>
+                        </li>
+                        <li class="header-navigation-settings-item">
+                            <a href="#" class="header-navigation-settings-link">Wygląd</a>
+                        </li>
+                        <li class="header-navigation-settings-item">
+                            <a href="#" class="header-navigation-settings-link">Wtyczki</a>
+                        </li>
+                        <li class="header-navigation-settings-item">
+                            <a href="#" class="header-navigation-settings-link">Kopia zapasowa</a>
                         </li>
                     </ul>
                 </div>
