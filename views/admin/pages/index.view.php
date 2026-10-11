@@ -22,8 +22,8 @@
                     <li class="info-item">
                         <a class="info-item-link"
                             href="index.php?<?php echo http_build_query(['route' => 'admin/articles/list']); ?>">
-                            <div class="info-icon-wrapper">
-                                <i class="info-icon info-icon-sticky fa-regular fa-note-sticky"></i>
+                            <div class="info-icon-wrapper info-icon-sticky">
+                                <i class="info-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="info-text-wrapper">
                                 <span class="info-text-number">24</span>
@@ -32,31 +32,37 @@
                         </a>
                     </li>
                     <li class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="info-icon info-icon-folder fa-solid fa-folder-open"></i>
-                        </div>
-                        <div class="info-text-wrapper">
-                            <span class="info-text-number">8</span>
-                            <p class="info-text-paragraph">Kategorie</p>
-                        </div>
+                        <a class="info-item-link" href="#">
+                            <div class="info-icon-wrapper info-icon-folder">
+                                <i class="info-icon fa-solid fa-folder-open"></i>
+                            </div>
+                            <div class="info-text-wrapper">
+                                <span class="info-text-number">8</span>
+                                <p class="info-text-paragraph">Kategorie</p>
+                            </div>
+                        </a>
                     </li>
                     <li class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="info-icon info-icon-user fa-solid fa-user"></i>
-                        </div>
-                        <div class="info-text-wrapper">
-                            <span class="info-text-number">3</span>
-                            <p class="info-text-paragraph">Autorzy</p>
-                        </div>
+                        <a class="info-item-link" href="#">
+                            <div class="info-icon-wrapper info-icon-user">
+                                <i class="info-icon fa-solid fa-user"></i>
+                            </div>
+                            <div class="info-text-wrapper">
+                                <span class="info-text-number">3</span>
+                                <p class="info-text-paragraph">Autorzy</p>
+                            </div>
+                        </a>
                     </li>
                     <li class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="info-icon info-icon-dots fa-regular fa-comment-dots"></i>
-                        </div>
-                        <div class="info-text-wrapper">
-                            <span class="info-text-number">28</span>
-                            <p class="info-text-paragraph">Komentarze</p>
-                        </div>
+                        <a class="info-item-link" href="#">
+                            <div class="info-icon-wrapper info-icon-dots">
+                                <i class="info-icon fa-regular fa-comment-dots"></i>
+                            </div>
+                            <div class="info-text-wrapper">
+                                <span class="info-text-number">28</span>
+                                <p class="info-text-paragraph">Komentarze</p>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>
