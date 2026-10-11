@@ -48,7 +48,7 @@
                     </ul>
                     <ul class="header-navigation-list">
                         <li class="header-navigation-item">
-                            <a href="#" class="header-navigation-link is-active">
+                            <a href="index.php?route=admin/index" class="header-navigation-link is-active">
                                 <span><i class="header-navigation-link-icon fa-solid fa-house-user"></i></span>
                                 <span>Pulpit</span>
                             </a>
@@ -57,7 +57,7 @@
                     <ul class="header-navigation-list">
                         <span class="header-navigation-title">Zarządzanie treścią</span>
                         <li class="header-navigation-item">
-                            <a href="#" class="header-navigation-link">
+                            <a href="index.php?route=admin/articles/list" class="header-navigation-link">
                                 <span><i class="header-navigation-link-icon fa-regular fa-note-sticky"></i></span>
                                 <span>Artykuły</span>
                             </a>

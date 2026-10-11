@@ -4,7 +4,12 @@ const displayNavigation = () => {
     const navigationLinks = document.querySelectorAll('.header-navigation-link'); 
     const navigationCloseButton = document.querySelector('.header-navigation-close-button');
 
+    const desktopQuery = window.matchMedia('(min-width: 75em)');
+
     const handleNavigation = () => {
+        if (desktopQuery.matches) {
+            return;
+        }
         navigationWrapper.classList.toggle('header-navigation-open');
     }
   
