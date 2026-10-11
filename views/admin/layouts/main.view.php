@@ -37,46 +37,91 @@
                             <a href="#" class="header-navigation-link">Kontakt</a>
                         </li>
                     </ul> -->
-                    <ul class="header-navigation-desktop-list">
-                        <li class="header-navigation-desktop-item">
-                            <a href="#" class="header-navigation-desktop-link">Pulpit</a>
+                    <ul class="header-navigation-branding">
+                        <div class="header-navigation-logo">
+                            <i class="header-navigation-icon fa-solid fa-cube"></i>
+                        </div>
+                        <div class="header-navigation-content">
+                            <p class="header-navigation-paragraph">Vanilla CMS</p>
+                            <p class="header-navigation-description">Panel administracyjny</p>
+                        </div>
+                    </ul>
+                    <ul class="header-navigation-list">
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link is-active">
+                                <span><i class="header-navigation-link-icon fa-solid fa-house-user"></i></span>
+                                <span>Pulpit</span>
+                            </a>
                         </li>
                     </ul>
-                    <ul class="header-navigation-content-list">
-                        <li class="header-navigation-content-item">
-                            <a href="#" class="header-navigation-content-link">Artykuły</a>
+                    <ul class="header-navigation-list">
+                        <span class="header-navigation-title">Zarządzanie treścią</span>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-regular fa-note-sticky"></i></span>
+                                <span>Artykuły</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-content-item">
-                            <a href="#" class="header-navigation-content-link">Kategorie</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-regular fa-folder-open"></i></span>
+                                <span>Kategorie</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-content-item">
-                            <a href="#" class="header-navigation-content-link">Strony</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-regular fa-rectangle-list"></i></span>
+                                <span>Strony</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-content-item">
-                            <a href="#" class="header-navigation-content-link">Komentarze</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-regular fa-comment-dots"></i></span>
+                                <span>Komentarze</span>
+                            </a>
                         </li>
                     </ul>
-                    <ul class="header-navigation-users-list">
-                        <li class="header-navigation-users-item">
-                            <a href="#" class="header-navigatgion-users-link">Użytkownicy</a>
+                    <ul class="header-navigation-list">
+                        <span class="header-navigation-title">Użytkownicy</span>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-solid fa-users-gear"></i></span>
+                                <span>Użytkownicy</span>
+                            </a>
                         </li>
 
-                        <li class="header-navigation-users-item">
-                            <a href="#" class="header-navigatgion-users-link">Profil</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-regular fa-user"></i></span>
+                                <span>Profil</span>
+                            </a>
                         </li>
                     </ul>
-                    <ul class="header-navigation-settings-list">
-                        <li class="header-navigation-settings-item">
-                            <a href="#" class="header-navigation-settings-link">Ustawienia</a>
+                    <ul class="header-navigation-list">
+                        <span class="header-navigation-title">Ustawienia</span>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-solid fa-gear"></i></span>
+                                <span>Ustawienia</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-settings-item">
-                            <a href="#" class="header-navigation-settings-link">Wygląd</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-solid fa-palette"></i></span>
+                                <span>Wygląd</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-settings-item">
-                            <a href="#" class="header-navigation-settings-link">Wtyczki</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-solid fa-rocket"></i></span>
+                                <span>Wtyczki</span>
+                            </a>
                         </li>
-                        <li class="header-navigation-settings-item">
-                            <a href="#" class="header-navigation-settings-link">Kopia zapasowa</a>
+                        <li class="header-navigation-item">
+                            <a href="#" class="header-navigation-link">
+                                <span><i class="header-navigation-link-icon fa-solid fa-database"></i></span>
+                                <span>Kopia zapasowa</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
