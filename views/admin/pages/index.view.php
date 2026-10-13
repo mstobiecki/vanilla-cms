@@ -22,7 +22,7 @@
                     <li class="info-item">
                         <a class="info-item-link"
                             href="index.php?<?php echo http_build_query(['route' => 'admin/articles/list']); ?>">
-                            <div class="info-icon-wrapper info-icon-sticky">
+                            <div class="info-icon-wrapper icon-articles">
                                 <i class="info-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="info-text-wrapper">
@@ -33,7 +33,7 @@
                     </li>
                     <li class="info-item">
                         <a class="info-item-link" href="#">
-                            <div class="info-icon-wrapper info-icon-folder">
+                            <div class="info-icon-wrapper icon-folder">
                                 <i class="info-icon fa-solid fa-folder-open"></i>
                             </div>
                             <div class="info-text-wrapper">
@@ -44,7 +44,7 @@
                     </li>
                     <li class="info-item">
                         <a class="info-item-link" href="#">
-                            <div class="info-icon-wrapper info-icon-user">
+                            <div class="info-icon-wrapper icon-user">
                                 <i class="info-icon fa-solid fa-user"></i>
                             </div>
                             <div class="info-text-wrapper">
@@ -55,7 +55,7 @@
                     </li>
                     <li class="info-item">
                         <a class="info-item-link" href="#">
-                            <div class="info-icon-wrapper info-icon-dots">
+                            <div class="info-icon-wrapper icon-comments">
                                 <i class="info-icon fa-regular fa-comment-dots"></i>
                             </div>
                             <div class="info-text-wrapper">
@@ -219,67 +219,54 @@
                     <h3 class="last-activity-heading">Ostatnia aktywność</h3>
                     <ul class="last-activity-list">
                         <li class="last-activity-item">
-                            <div class="last-activity-icon-container">
-                                <i class="last-activity-icon fa-regular fa-user"></i>
+                            <div class="icon-articles last-activity-icon-container">
+                                <i class="last-activity-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="last-activity-text-wrapper">
                                 <h4 class="last-activity-text-heading">Dodano nowy artykuł</h4>
-                                <p class="last-activity-text-info">Lorem ipsum dolor sit amet consectetur.</p>
+                                <p class="last-activity-text-info">Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit. Voluptates, tempora.</p>
                             </div>
-                            <time datetime="2026-10-07T1:30" class="last-activity-date">
+                            <time datetime="2026-10-07T1:30" class="last-activity-date-wrapper">
                                 <span class="last-activity-date">7 października</span>
                                 <span class="last-activity-time">14:30</span>
                             </time>
                         </li>
-                        <!-- <li class="last-activity-item">
-                            <div class="last-activity-icon-container">
-                                <i class="last-activity-icon fa-regular fa-note-sticky"></i>
-                            </div>
-                            <div class="last-activity-text-wrapper">
-                                <h4 class="last-activity-text-heading">Zaktualizowano artykuł</h4>
-                                <p class="last-activity-text-info">Lorem ipsum dolor sit.</p>
-                            </div>
-                            <time datetime="2026-10-07T1:30" class="last-activity-date">
-                                <span class="last-activity-date">7 października</span>
-                                <span class="last-activity-time">15:23</span>
-                            </time>
-                        </li> -->
                         <li class="last-activity-item">
-                            <div class="last-activity-icon-container">
-                                <i class="last-activity-icon fa-regular fa-note-sticky"></i>
+                            <div class="icon-pen icon-articles last-activity-icon-container">
+                                <i class="last-activity-icon fa-solid fa-pen"></i>
                             </div>
                             <div class="last-activity-text-wrapper">
                                 <h4 class="last-activity-text-heading">Zaktualizowano artykuł</h4>
                                 <p class="last-activity-text-info">Lorem .</p>
                             </div>
-                            <time datetime="2026-10-07T1:30" class="last-activity-date">
+                            <time datetime="2026-10-07T1:30" class="last-activity-date-wrapper">
                                 <span class="last-activity-date">7 października</span>
                                 <span class="last-activity-time">15:23</span>
                             </time>
                         </li>
                         <li class="last-activity-item">
-                            <div class="last-activity-icon-container">
-                                <i class="last-activity-icon fa-solid fa-pen"></i>
+                            <div class="icon-articles last-activity-icon-container">
+                                <i class="last-activity-icon fa-regular fa-note-sticky"></i>
                             </div>
                             <div class="last-activity-text-wrapper">
                                 <h4 class="last-activity-text-heading">Dodano nowy artykuł</h4>
                                 <p class="last-activity-text-info">Lorem ipsum dolor sit amet consectetur.</p>
                             </div>
-                            <time datetime="2026-10-07T1:30" class="last-activity-date">
+                            <time datetime="2026-10-07T1:30" class="last-activity-date-wrapper">
                                 <span class="last-activity-date">7 października</span>
                                 <span class="last-activity-time">14:30</span>
                             </time>
                         </li>
-                        </li>
                         <li class="last-activity-item">
-                            <div class="last-activity-icon-container">
-                                <i class="last-activity-icon info-icon-dots fa-regular fa-comment-dots"></i>
+                            <div class="icon-comments last-activity-icon-container">
+                                <i class="last-activity-icon fa-regular fa-comment-dots"></i>
                             </div>
                             <div class="last-activity-text-wrapper">
                                 <h4 class="last-activity-text-heading">Nowy komentarz</h4>
                                 <p class="last-activity-text-info">Do artykułu: Lorem ipsum dolor sit amet.</p>
                             </div>
-                            <time datetime="2026-10-07T1:30" class="last-activity-date">
+                            <time datetime="2026-10-07T1:30" class="last-activity-date-wrapper">
                                 <span class="last-activity-date">7 października</span>
                                 <span class="last-activity-time">17:15</span>
                             </time>
