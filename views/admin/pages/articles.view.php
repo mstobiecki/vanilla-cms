@@ -1,4 +1,4 @@
-<main>
+<main class="main">
     <div class="container">
         <div class="articles-card">
             <div class="articles-header">
