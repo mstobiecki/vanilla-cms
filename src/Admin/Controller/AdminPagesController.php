@@ -146,4 +146,10 @@ class AdminPagesController extends AdminAbstractController
             'errors' => $errors,
         ]);
     }
+
+    public function deleteArticle()
+    {
+        $id = (int) ($_POST['id'] ?? 0);
+        var_dump($id);
+    }
 }

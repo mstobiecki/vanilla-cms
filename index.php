@@ -43,6 +43,15 @@ switch ($route) {
         $adminPagesController->createArticle();
 
         break;
+    case 'admin/articles/delete':
+
+        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
+        $imageUploader = new App\Service\ImageUploader();
+
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController->deleteArticle();
+
+        break;
 
     case 'admin/articles/list':
 
