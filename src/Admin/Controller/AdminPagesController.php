@@ -3,6 +3,7 @@
 namespace App\Admin\Controller;
 
 use App\Repository\ArticlesRepository;
+use App\Service\FlashMessages;
 use App\Service\ImageUploader;
 
 class AdminPagesController extends AdminAbstractController
@@ -10,6 +11,7 @@ class AdminPagesController extends AdminAbstractController
     public function __construct(
         private ArticlesRepository $articlesRepository,
         private ImageUploader $imageUploader,
+        private FlashMessages $flashMessages,
     ) {
     }
 
@@ -72,6 +74,7 @@ class AdminPagesController extends AdminAbstractController
 
         $this->render('pages/articles', [
             'allArticlesFromDb' => $allArticlesFromDb,
+            'flash' => $this->flashMessages->consume(),
         ]);
     }
 
@@ -151,10 +154,18 @@ class AdminPagesController extends AdminAbstractController
     {
         if (!empty($_POST)) {
             $id = (int) ($_POST['id'] ?? 0);
-            $this->articlesRepository->deleteArticle(id: $id);
+
+            try {
+                $this->articlesRepository->deleteArticle(id: $id);
+                $this->flashMessages->add('success', 'Artykuł został prawidłowo usunięty.');
+
+            } catch (\InvalidArgumentException $e) {
+                $this->flashMessages->add('error', $e->getMessage());
+            }
 
             header("Location: index.php?" . http_build_query(['route' => 'admin/articles/list']));
             exit;
+
         }
     }
 }

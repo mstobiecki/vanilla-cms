@@ -2,6 +2,17 @@
     <div class="container">
         <div class="articles-card">
             <div class="articles-header">
+                <?php foreach ($flash['success'] ?? [] as $message): ?>
+                <p class="articles-message articles-message-success">
+                    <?php echo espaceHtml($message); ?>
+                </p>
+                <?php endforeach; ?>
+
+                <?php foreach ($flash['error'] ?? [] as $message): ?>
+                <p class="articles-message articles-message-error">
+                    <?php echo espaceHtml($message); ?>
+                </p>
+                <?php endforeach; ?>
                 <div>
                     <h2>Artykuły</h2>
                     <p>Zarządzaj artykułami w swojej bazie danych</p>

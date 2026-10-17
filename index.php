@@ -2,6 +2,8 @@
 
 require __DIR__ . '/inc/all.inc.php';
 
+session_start();
+
 $route = (string) ($_GET['route'] ?? 'pages');
 
 switch ($route) {
@@ -28,8 +30,9 @@ switch ($route) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
+        $flashMessages = new App\Service\FlashMessages();
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->showIndexPage();
 
         break;
@@ -38,8 +41,9 @@ switch ($route) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
+        $flashMessages = new App\Service\FlashMessages();
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->createArticle();
 
         break;
@@ -47,8 +51,9 @@ switch ($route) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
+        $flashMessages = new App\Service\FlashMessages();
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->deleteArticle();
 
         break;
@@ -57,8 +62,9 @@ switch ($route) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
+        $flashMessages = new App\Service\FlashMessages();
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->showAllArticles();
 
         break;
@@ -67,8 +73,9 @@ switch ($route) {
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
         $imageUploader = new App\Service\ImageUploader();
+        $flashMessages = new App\Service\FlashMessages();
 
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader);
+        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->editArticle();
 
         break;

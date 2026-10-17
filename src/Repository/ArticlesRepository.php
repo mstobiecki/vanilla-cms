@@ -138,8 +138,16 @@ class ArticlesRepository
 
     public function deleteArticle(string $id)
     {
+        if ($id <= 0) {
+            throw new \InvalidArgumentException('Nieprawidłowe ID artykułu.');
+        }
+
         $stmt = $this->pdo->prepare("DELETE FROM `articles` WHERE `id` = :id");
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
+
+        if ($stmt->rowCount() === 0) {
+            throw new \InvalidArgumentException('Artykuł o podanym ID nie istnieje.');
+        }
     }
 }
