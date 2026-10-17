@@ -135,4 +135,11 @@ class ArticlesRepository
         $stmt->bindValue(':readingTime', $articleData['readingTime'], PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    public function deleteArticle(string $id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM `articles` WHERE `id` = :id");
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

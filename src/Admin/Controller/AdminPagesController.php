@@ -149,7 +149,12 @@ class AdminPagesController extends AdminAbstractController
 
     public function deleteArticle()
     {
-        $id = (int) ($_POST['id'] ?? 0);
-        var_dump($id);
+        if (!empty($_POST)) {
+            $id = (int) ($_POST['id'] ?? 0);
+            $this->articlesRepository->deleteArticle(id: $id);
+
+            header("Location: index.php?" . http_build_query(['route' => 'admin/articles/list']));
+            exit;
+        }
     }
 }
