@@ -26,6 +26,12 @@ switch ($route) {
         $articlesController->showSingleArticle(slug: $slug);
         break;
 
+    case 'register':
+        $usersController = new \App\Frontend\Controller\UsersController();
+        $usersController->registerAccount();
+
+        break;
+
     case 'admin/index':
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
