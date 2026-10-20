@@ -6,6 +6,6 @@ class UsersController extends AbstractController
 {
     public function registerAccount()
     {
-        echo "UsersController::registerAccount()";
+        $this->render("pages/register", []);
     }
 }
