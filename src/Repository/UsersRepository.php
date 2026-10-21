@@ -10,6 +10,15 @@ class UsersRepository
     {
     }
 
+    public function emailExists(string $email)
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `email` = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn() > 0;
+    }
+
     public function createAccount(string $email, string $passwordHash)
     {
         $stmt = $this->pdo->prepare("INSERT INTO `users` (`email`, `passwordHash`) VALUES (:email, :passwordHash)");
