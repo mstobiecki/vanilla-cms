@@ -42,6 +42,6 @@ class UsersController extends AbstractController
 
     public function loginAccount()
     {
-        echo "UsersController::loginAccount()";
+        $this->render('pages/login', []);
     }
 }

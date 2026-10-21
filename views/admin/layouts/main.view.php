@@ -158,6 +158,13 @@
     <script src="https://kit.fontawesome.com/2b2f2d7c3e.js" crossorigin="anonymous"></script>
     <script type="module" src="./src/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <?php foreach ($flash['success'] as $message): ?>
+    <p class="flash flash-success">
+        <?php echo espaceHtml($message); ?>
+    </p>
+    <?php endforeach; ?>
+
     <?php echo $contents; ?>
 </body>
 

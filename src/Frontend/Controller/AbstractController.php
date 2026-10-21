@@ -6,6 +6,7 @@ abstract class AbstractController
 {
     protected function render($view, $params)
     {
+        $params['flash'] = (new \App\Service\FlashMessages())->consume();
         extract($params);
 
         ob_start();

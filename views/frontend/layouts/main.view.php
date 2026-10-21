@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./css/components/single-article.css" />
     <link rel="stylesheet" href="./css/components/technologies.css" />
     <link rel="stylesheet" href="./css/components/ready.css" />
-    <link rel="stylesheet" href="./css/components/register.css" />
+    <link rel="stylesheet" href="./css/components/auth.css" />
     <link rel="stylesheet" href="./css/components/footer.css" />
     <link rel="stylesheet" href="./css//components/helpers.css" />
     <title>Vanilla CMS</title>

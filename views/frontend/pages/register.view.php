@@ -1,56 +1,56 @@
 <main class="main">
     <div class="container">
-        <section class="register">
-            <div class="register-card">
-                <header class="register-header">
-                    <span class="register-tag">Dołącz do nas</span>
-                    <h2 class="register-heading">
-                        Załóż <span class="register-heading-special">konto</span>
+        <section class="auth">
+            <div class="auth-card">
+                <header class="auth-header">
+                    <span class="auth-tag">Dołącz do nas</span>
+                    <h2 class="auth-heading">
+                        Załóż <span class="auth-heading-special">konto</span>
                     </h2>
-                    <p class="register-paragraph">
+                    <p class="auth-paragraph">
                         Utwórz darmowe konto w Vanilla CMS i zacznij korzystać z serwisu.
                     </p>
                 </header>
 
                 <?php if (!empty($errors)): ?>
-                <div class="register-errors" role="alert">
+                <div class="auth-errors" role="alert">
                     <?php foreach ($errors as $error): ?>
-                    <p class="register-error">
-                        <i class="register-error-icon fa-solid fa-circle-exclamation"></i>
+                    <p class="auth-error">
+                        <i class="auth-error-icon fa-solid fa-circle-exclamation"></i>
                         <?php echo espaceHtml($error); ?>
                     </p>
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
 
-                <form class="register-form" method="POST" novalidate
+                <form class="auth-form" method="POST" novalidate
                     action="index.php?<?php echo http_build_query(['route' => 'account/register']); ?>">
-                    <div class="register-field">
-                        <label class="register-label" for="email">Adres e-mail</label>
-                        <input class="register-input" type="email" id="email" name="email"
+                    <div class="auth-field">
+                        <label class="auth-label" for="email">Adres e-mail</label>
+                        <input class="auth-input" type="email" id="email" name="email"
                             placeholder="jan.kowalski@example.com" autocomplete="email" required
                             value="<?php echo espaceHtml($email ?? ''); ?>" />
                     </div>
 
-                    <div class="register-field">
-                        <label class="register-label" for="password">Hasło</label>
-                        <input class="register-input" type="password" id="password" name="password"
+                    <div class="auth-field">
+                        <label class="auth-label" for="password">Hasło</label>
+                        <input class="auth-input" type="password" id="password" name="password"
                             placeholder="Minimum 8 znaków" autocomplete="new-password" minlength="8" required />
                     </div>
 
-                    <div class="register-field">
-                        <label class="register-label" for="passwordRepeat">Powtórz hasło</label>
-                        <input class="register-input" type="password" id="passwordRepeat" name="passwordRepeat"
+                    <div class="auth-field">
+                        <label class="auth-label" for="passwordRepeat">Powtórz hasło</label>
+                        <input class="auth-input" type="password" id="passwordRepeat" name="passwordRepeat"
                             placeholder="Wpisz hasło ponownie" autocomplete="new-password" minlength="8" required />
                     </div>
 
-                    <button class="register-button" type="submit">Utwórz konto</button>
+                    <button class="auth-button" type="submit">Utwórz konto</button>
                 </form>
 
-                <p class="register-login">
+                <p class="auth-switch">
                     Masz już konto?
-                    <a class="register-login-link"
-                        href="index.php?<?php echo http_build_query(['route' => 'login']); ?>">Zaloguj się</a>
+                    <a class="auth-switch-link"
+                        href="index.php?<?php echo http_build_query(['route' => 'account/login']); ?>">Zaloguj się</a>
                 </p>
             </div>
         </section>

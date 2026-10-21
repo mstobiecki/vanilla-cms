@@ -11,3 +11,14 @@
   color: #845ef7;
   border: 1px solid var(--medium-purple-color);
 }
+
+.flash {
+  padding: 1.5rem 2rem;
+  font-size: var(--small-font-size);
+  text-align: center;
+}
+
+.flash-success {
+  color: #2b8a3e;
+  background-color: #ebfbee;
+}
