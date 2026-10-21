@@ -62,6 +62,13 @@
             </button>
         </nav>
     </header>
+    <?php if (!empty($flash['success'])): ?>
+    <?php foreach ($flash['success'] as $message): ?>
+    <p class="flash flash-success">
+        <?php echo espaceHtml($message); ?>
+    </p>
+    <?php endforeach; ?>
+    <?php endif; ?>
     <?php echo $contents; ?>
     <footer class="footer">
         <div class="container">

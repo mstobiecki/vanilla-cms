@@ -159,12 +159,6 @@
     <script type="module" src="./src/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <?php foreach ($flash['success'] as $message): ?>
-    <p class="flash flash-success">
-        <?php echo espaceHtml($message); ?>
-    </p>
-    <?php endforeach; ?>
-
     <?php echo $contents; ?>
 </body>
 
