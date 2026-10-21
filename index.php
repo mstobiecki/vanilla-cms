@@ -27,7 +27,10 @@ switch ($route) {
         break;
 
     case 'register':
-        $usersController = new \App\Frontend\Controller\UsersController();
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $usersController = new \App\Frontend\Controller\UsersController($authService);
+
         $usersController->registerAccount();
 
         break;
