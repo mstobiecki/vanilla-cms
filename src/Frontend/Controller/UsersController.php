@@ -6,6 +6,14 @@ class UsersController extends AbstractController
 {
     public function registerAccount()
     {
-        $this->render("pages/register", []);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = (string) ($_POST['email'] ?? '');
+            $password = (string) ($_POST['password'] ?? '');
+            $passwordRepeat = (string) ($_POST['passwordRepeat'] ?? '');
+
+
+
+            $this->render("pages/register", []);
+        }
     }
 }
