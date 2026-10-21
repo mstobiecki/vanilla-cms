@@ -26,13 +26,21 @@ switch ($route) {
         $articlesController->showSingleArticle(slug: $slug);
         break;
 
-    case 'register':
+    case 'account/register':
         $usersRepository = new \App\Repository\UsersRepository($pdo);
         $authService = new \App\Service\AuthService($usersRepository);
         $usersController = new \App\Frontend\Controller\UsersController($authService);
 
         $usersController->registerAccount();
 
+        break;
+
+    case 'account/login':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $usersController = new \App\Frontend\Controller\UsersController($authService);
+
+        $usersController->loginAccount();
         break;
 
     case 'admin/index':

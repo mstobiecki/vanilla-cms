@@ -22,7 +22,7 @@ class UsersController extends AbstractController
 
             try {
                 $success = $this->authService->registerAccount(email: $email, password: $password, passwordRepeat: $passwordRepeat);
-                var_dump($success);
+
             } catch (\InvalidArgumentException $e) {
                 $errors[] = $e->getMessage();
             }
@@ -31,5 +31,10 @@ class UsersController extends AbstractController
             'errors' => $errors,
             'email' => $email,
         ]);
+    }
+
+    public function loginAccount()
+    {
+        echo "UsersController::loginAccount()";
     }
 }
