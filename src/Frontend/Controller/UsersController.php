@@ -3,11 +3,14 @@
 namespace App\Frontend\Controller;
 
 use App\Service\AuthService;
+use App\Service\FlashMessages;
 
 class UsersController extends AbstractController
 {
-    public function __construct(private AuthService $authService)
-    {
+    public function __construct(
+        private AuthService $authService,
+        private FlashMessages $flashMessages
+    ) {
     }
 
     public function registerAccount()
@@ -21,7 +24,11 @@ class UsersController extends AbstractController
             $passwordRepeat = (string) ($_POST['passwordRepeat'] ?? '');
 
             try {
-                $success = $this->authService->registerAccount(email: $email, password: $password, passwordRepeat: $passwordRepeat);
+                $this->authService->registerAccount(email: $email, password: $password, passwordRepeat: $passwordRepeat);
+                $this->flashMessages->add('success', 'Konto zostało utworzone.');
+
+                header("Location: index.php?" . http_build_query(['route' => 'account/login']));
+                exit;
 
             } catch (\InvalidArgumentException $e) {
                 $errors[] = $e->getMessage();

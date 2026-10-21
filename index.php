@@ -29,8 +29,9 @@ switch ($route) {
     case 'account/register':
         $usersRepository = new \App\Repository\UsersRepository($pdo);
         $authService = new \App\Service\AuthService($usersRepository);
-        $usersController = new \App\Frontend\Controller\UsersController($authService);
+        $flashMessages = new \App\Service\FlashMessages();
 
+        $usersController = new \App\Frontend\Controller\UsersController($authService, $flashMessages);
         $usersController->registerAccount();
 
         break;
@@ -38,9 +39,11 @@ switch ($route) {
     case 'account/login':
         $usersRepository = new \App\Repository\UsersRepository($pdo);
         $authService = new \App\Service\AuthService($usersRepository);
-        $usersController = new \App\Frontend\Controller\UsersController($authService);
+        $flashMessages = new \App\Service\FlashMessages();
 
+        $usersController = new \App\Frontend\Controller\UsersController($authService, $flashMessages);
         $usersController->loginAccount();
+
         break;
 
     case 'admin/index':

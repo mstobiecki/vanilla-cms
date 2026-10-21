@@ -24,7 +24,7 @@
                 <?php endif; ?>
 
                 <form class="register-form" method="POST" novalidate
-                    action="index.php?<?php echo http_build_query(['route' => 'register']); ?>">
+                    action="index.php?<?php echo http_build_query(['route' => 'account/register']); ?>">
                     <div class="register-field">
                         <label class="register-label" for="email">Adres e-mail</label>
                         <input class="register-input" type="email" id="email" name="email"
