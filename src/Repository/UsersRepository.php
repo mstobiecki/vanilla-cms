@@ -31,8 +31,10 @@ class UsersRepository
 
     public function findUserByEmail(string $email)
     {
-        $stmt = $this->pdo->prepare("SELECT `id`, `email`, `password_hash` FROM `users` WHERE `email` = :email");
+        $stmt = $this->pdo->prepare("SELECT `id`, `password_hash` FROM `users` WHERE `email` = :email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
