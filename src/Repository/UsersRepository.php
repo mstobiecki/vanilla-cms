@@ -28,4 +28,11 @@ class UsersRepository
 
         return (int) $this->pdo->lastInsertId();
     }
+
+    public function findUserByEmail(string $email)
+    {
+        $stmt = $this->pdo->prepare("SELECT `id`, `email`, `password_hash` FROM `users` WHERE `email` = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

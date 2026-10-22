@@ -30,4 +30,9 @@ class AuthService
 
         return $this->usersReposistory->createAccount(email: $email, passwordHash: password_hash($password, PASSWORD_DEFAULT));
     }
+
+    public function loginAccount(string $email, string $password)
+    {
+
+    }
 }

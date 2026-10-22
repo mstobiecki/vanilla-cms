@@ -42,6 +42,26 @@ class UsersController extends AbstractController
 
     public function loginAccount()
     {
-        $this->render('pages/login', []);
+        $errors = [];
+        $email = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = trim((string) ($_POST['email']));
+            $password = (string) ($_POST['password']);
+
+            try {
+                $this->authService->loginAccount(email: $email, password: $password);
+                $this->flashMessages->add('success', 'Pomyślne zalogowanie na konto.');
+
+                header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
+                exit;
+            } catch (\InvalidArgumentException $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+        $this->render('pages/login', [
+            'email' => $email,
+            'errors' => $errors,
+        ]);
     }
 }
