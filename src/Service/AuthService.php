@@ -58,7 +58,30 @@ class AuthService
         }
 
         session_regenerate_id(true);
-        $_SESSION['user_id'] = (int) $id;
+        $_SESSION['userId'] = (int) $id;
 
+    }
+
+    public function getCurrentUser(): ?array
+    {
+        $id = (int) ($_SESSION['userId'] ?? 0);
+
+        if ($id <= 0) {
+            return null;
+        }
+
+        $user = $this->usersReposistory->findUserById($id);
+
+        if ($user === null) {
+            $this->logoutAccount();
+        }
+
+        return $user;
+    }
+
+    public function logoutAccount()
+    {
+        unset($_SESSION['userId']);
+        session_regenerate_id(true);
     }
 }

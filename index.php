@@ -2,9 +2,24 @@
 
 require __DIR__ . '/inc/all.inc.php';
 
-session_start();
+$usersRepository = new \App\Repository\UsersRepository($pdo);
+$authService = new \App\Service\AuthService($usersRepository);
 
 $route = (string) ($_GET['route'] ?? 'pages');
+
+if (str_starts_with($route, 'admin/')) {
+    $currentUser = $authService->getCurrentUser();
+
+    if ($currentUser === null) {
+        header("Location: index.php?route=account/login");
+        exit;
+    }
+
+    if ($currentUser['role'] !== 'admin') {
+        header("Location: index.php");
+        exit;
+    }
+}
 
 switch ($route) {
 

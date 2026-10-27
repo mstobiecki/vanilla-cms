@@ -29,12 +29,21 @@ class UsersRepository
         return (int) $this->pdo->lastInsertId();
     }
 
-    public function findUserByEmail(string $email)
+    public function findUserByEmail(string $email): ?array
     {
         $stmt = $this->pdo->prepare("SELECT `id`, `password_hash` FROM `users` WHERE `email` = :email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findUserById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare("SELECT `id`, `email`, `role` FROM `users` WHERE `id` = :id");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 }
