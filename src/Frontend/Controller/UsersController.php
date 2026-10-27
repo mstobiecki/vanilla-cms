@@ -53,8 +53,9 @@ class UsersController extends AbstractController
                 $this->authService->loginAccount(email: $email, password: $password);
                 $this->flashMessages->add('success', 'Pomyślne zalogowanie na konto.');
 
-                // header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
-                // exit;
+                header("Location: index.php?" . http_build_query(['route' => 'admin/index']));
+                exit;
+
             } catch (\InvalidArgumentException $e) {
                 $errors[] = $e->getMessage();
             }
