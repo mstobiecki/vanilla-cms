@@ -25,6 +25,7 @@
 
                 <form class="auth-form" method="POST" novalidate
                     action="index.php?<?php echo http_build_query(['route' => 'account/register']); ?>">
+                    <?php echo csrfField(); ?>
                     <div class="auth-field">
                         <label class="auth-label" for="email">Adres e-mail</label>
                         <input class="auth-input" type="email" id="email" name="email"

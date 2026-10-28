@@ -21,6 +21,16 @@ if (str_starts_with($route, 'admin/')) {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfService = new \App\Service\CsrfService();
+
+    if (!$csrfService->isValid((string) ($_POST['csrf_token'] ?? ''))) {
+        http_response_code(403);
+        exit('Nieprawidłowy lub wygasły token formularza. Odśwież stronę i spróbuj ponownie.');
+    }
+
+}
+
 switch ($route) {
 
     case 'pages':

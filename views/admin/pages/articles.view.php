@@ -42,6 +42,7 @@
                                         class="btn btn-edit">Edytuj</a>
                                     <form method="POST"
                                         action="index.php?<?php echo http_build_query(['route' => 'admin/articles/delete']); ?>">
+                                        <?php echo csrfField(); ?>
                                         <input type="hidden" name="id"
                                             value="<?php echo espaceHtml($singleArticle->id); ?>" />
                                         <button class="btn btn-delete">

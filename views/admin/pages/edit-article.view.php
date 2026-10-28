@@ -23,6 +23,7 @@ $readingTimeFromDb = !empty($_POST['readingTime']) ? espaceHtml($_POST['readingT
                 <?php endforeach; ?>
                 <form class="article-form" enctype="multipart/form-data" method="POST"
                     action="index.php?<?php echo http_build_query(['route' => 'admin/articles/edit', 'id' => $singleArticle->id]); ?>">
+                    <?php echo csrfField(); ?>
                     <div class="article-form-container">
                         <label class="article-title" for="title">Tytuł</label>
                         <input class="article-input" type="text" id="title" name="title"
