@@ -17,14 +17,16 @@ class UsersController extends AbstractController
     {
         $errors = [];
         $email = '';
+        $username = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim((string) ($_POST['email'] ?? ''));
+            $username = trim((string) ($_POST['username'] ?? ''));
             $password = (string) ($_POST['password'] ?? '');
             $passwordRepeat = (string) ($_POST['passwordRepeat'] ?? '');
 
             try {
-                $this->authService->registerAccount(email: $email, password: $password, passwordRepeat: $passwordRepeat);
+                $this->authService->registerAccount(email: $email, username: $username, password: $password, passwordRepeat: $passwordRepeat);
                 $this->flashMessages->add('success', 'Konto zostało utworzone.');
 
                 header("Location: index.php?" . http_build_query(['route' => 'account/login']));
@@ -37,6 +39,7 @@ class UsersController extends AbstractController
         $this->render("pages/register", [
             'errors' => $errors,
             'email' => $email,
+            'username' => $username,
         ]);
     }
 

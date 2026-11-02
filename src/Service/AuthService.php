@@ -17,9 +17,13 @@ class AuthService
         }
     }
 
-    public function registerAccount(string $email, string $password, string $passwordRepeat)
+    public function registerAccount(string $email, string $username, string $password, string $passwordRepeat)
     {
         $this->checkAddressEmail($email);
+
+        if (mb_strlen($username < 3)) {
+            throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minumum 3 znaki.');
+        }
 
         if (mb_strlen($password) < 8) {
             throw new \InvalidArgumentException('Hasło musi się składać z minumum 8 znaków.');
@@ -33,7 +37,7 @@ class AuthService
             throw new \InvalidArgumentException('Konto z takim adresem e-mail już istnieje.');
         }
 
-        return $this->usersReposistory->createAccount(email: $email, passwordHash: password_hash($password, PASSWORD_DEFAULT));
+        return $this->usersReposistory->createAccount(email: $email, username: $username, passwordHash: password_hash($password, PASSWORD_DEFAULT));
     }
 
     public function loginAccount(string $email, string $password)

@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="auth-field">
-                        <label class="auth-label" for="text">Nazwa użytkownika</label>
-                        <input class="auth-input" type="text" id="text" name="text"
+                        <label class="auth-label" for="username">Nazwa użytkownika</label>
+                        <input class="auth-input" type="text" id="username" name="username"
                             placeholder="Podaj nazwę użytkownika" required
                             value="<?php echo espaceHtml($username ?? ''); ?>" />
                     </div>

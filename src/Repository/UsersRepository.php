@@ -19,10 +19,11 @@ class UsersRepository
         return (int) $stmt->fetchColumn() > 0;
     }
 
-    public function createAccount(string $email, string $passwordHash): int
+    public function createAccount(string $email, string $username, string $passwordHash): int
     {
-        $stmt = $this->pdo->prepare("INSERT INTO `users` (`email`, `password_hash`) VALUES (:email, :passwordHash)");
+        $stmt = $this->pdo->prepare("INSERT INTO `users` (`email`, `username`, `password_hash`) VALUES (:email, :username, :passwordHash)");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
         $stmt->bindValue(':passwordHash', $passwordHash, PDO::PARAM_STR);
         $stmt->execute();
 
