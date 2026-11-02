@@ -51,6 +51,69 @@
                       </a>
                   </footer>
               </article>
+              <section class="comments" id="comments">
+                  <header class="comments-header">
+                      <h3 class="comments-heading">
+                          Komentarze
+                          <span class="comments-count">3</span>
+                      </h3>
+                  </header>
+                  <div class="comments-errors" role="alert">
+                      <p class="comments-error">
+                          <i class="comments-error-icon fa-solid fa-circle-exclamation"></i>
+                          Komentarz nie może być pusty.
+                      </p>
+                  </div>
+                  <form class="comments-form" method="POST" action="#comments" novalidate>
+                      <label class="comments-label" for="comment-content">Dodaj komentarz</label>
+                      <textarea class="comments-textarea" id="comment-content" name="content" rows="4" maxlength="1000"
+                          placeholder="Napisz, co myślisz o tym artykule..." required></textarea>
+                      <div class="comments-form-footer">
+                          <p class="comments-hint">Maksymalnie 1000 znaków.</p>
+                          <button class="comments-button" type="submit">Opublikuj komentarz</button>
+                      </div>
+                  </form>
+                  <div class="comments-login-box">
+                      <p class="comments-login-text">
+                          <i class="comments-login-icon fa-regular fa-comment-dots"></i>
+                          Aby dodać komentarz, musisz być zalogowany.
+                      </p>
+                      <div class="comments-login-actions">
+                          <a class="comments-button" href="#">Zaloguj się</a>
+                          <a class="comments-button comments-button-outline" href="#">Załóż konto</a>
+                      </div>
+                  </div>
+                  <ul class="comments-list">
+                      <li class="comments-item">
+                          <div class="comments-avatar" aria-hidden="true">J</div>
+                          <div class="comments-body">
+                              <div class="comments-meta">
+                                  <span class="comments-author">mateusz</span>
+                                  <time class="comments-date" datetime="2026-11-02">2 listopada 2026, 17:21</time>
+                              </div>
+                              <p class="comments-text">Świetny artykuł! Dokładnie tego szukałem, zwłaszcza fragment o
+                                  sesjach.</p>
+                              <form class="comments-delete-form" method="POST" action="#">
+                                  <button class="comments-delete" type="submit">
+                                      <i class="fa-regular fa-trash-can"></i> Usuń
+                                  </button>
+                              </form>
+                          </div>
+                      </li>
+                      <li class="comments-item">
+                          <div class="comments-avatar" aria-hidden="true">A</div>
+                          <div class="comments-body">
+                              <div class="comments-meta">
+                                  <span class="comments-author">janek</span>
+                                  <time class="comments-date" datetime="2026-11-01">1 listopada 2026, 09:05</time>
+                              </div>
+                              <p class="comments-text">Czy planujesz podobny wpis o zabezpieczaniu formularzy tokenem
+                                  CSRF? Chętnie bym przeczytała.</p>
+                          </div>
+                      </li>
+                  </ul>
+                  <p class="comments-empty">Nie ma jeszcze żadnych komentarzy. Bądź pierwszy!</p>
+              </section>
           </section>
       </div>
   </main>
