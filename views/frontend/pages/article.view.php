@@ -64,7 +64,8 @@
                           Komentarz nie może być pusty.
                       </p>
                   </div>
-                  <form class="comments-form" method="POST" action="#comments" novalidate>
+                  <form class="comments-form" method="POST" novalidate>
+                      <?php echo csrfField(); ?>
                       <label class="comments-label" for="comment-content">Dodaj komentarz</label>
                       <textarea class="comments-textarea" id="comment-content" name="content" rows="4" maxlength="1000"
                           placeholder="Napisz, co myślisz o tym artykule..." required></textarea>
