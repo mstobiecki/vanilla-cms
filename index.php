@@ -46,9 +46,13 @@ switch ($route) {
         $slug = (string) ($_GET['slug'] ?? '');
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository);
+        $commentsRepository = new \App\Repository\CommentsRepository($pdo);
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
 
+        $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository, $commentsRepository, $authService);
         $articlesController->showSingleArticle(slug: $slug);
+
         break;
 
     case 'account/register':
