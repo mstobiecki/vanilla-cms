@@ -55,45 +55,68 @@
                   <header class="comments-header">
                       <h3 class="comments-heading">
                           Komentarze
-                          <span class="comments-count">3</span>
+                          <span class="comments-count">
+                              <?php echo count($comments); ?>
+                          </span>
                       </h3>
                   </header>
+                  <?php if (!empty($commentError)): ?>
                   <div class="comments-errors" role="alert">
                       <p class="comments-error">
                           <i class="comments-error-icon fa-solid fa-circle-exclamation"></i>
-                          Komentarz nie może być pusty.
+                          <?php echo espaceHtml($commentError); ?>
                       </p>
                   </div>
+                  <?php endif; ?>
+                  <?php if ($currentUser !== null): ?>
                   <form class="comments-form" method="POST" novalidate>
                       <?php echo csrfField(); ?>
                       <label class="comments-label" for="comment-content">Dodaj komentarz</label>
                       <textarea class="comments-textarea" id="comment-content" name="content" rows="4" maxlength="1000"
-                          placeholder="Napisz, co myślisz o tym artykule..." required></textarea>
+                          placeholder="Napisz, co myślisz o tym artykule..." required>
+                        <?php echo espaceHtml($oldContent ?? ''); ?>
+                    </textarea>
                       <div class="comments-form-footer">
                           <p class="comments-hint">Maksymalnie 1000 znaków.</p>
                           <button class="comments-button" type="submit">Opublikuj komentarz</button>
                       </div>
                   </form>
+                  <?php else: ?>
                   <div class="comments-login-box">
                       <p class="comments-login-text">
                           <i class="comments-login-icon fa-regular fa-comment-dots"></i>
                           Aby dodać komentarz, musisz być zalogowany.
                       </p>
                       <div class="comments-login-actions">
-                          <a class="comments-button" href="#">Zaloguj się</a>
-                          <a class="comments-button comments-button-outline" href="#">Załóż konto</a>
+                          <a class="comments-button"
+                              href="index.php?<?php echo http_build_query(['route' => 'account/login']); ?>">Zaloguj
+                              się</a>
+                          <a class="comments-button comments-button-outline"
+                              href="index.php?<?php echo http_build_query(['route' => 'account/register']); ?>">Załóż
+                              konto</a>
                       </div>
                   </div>
+                  <?php endif; ?>
+                  <?php if (!empty($comments)): ?>
                   <ul class="comments-list">
+                      <?php foreach ($comments as $comment): ?>
                       <li class="comments-item">
-                          <div class="comments-avatar" aria-hidden="true">J</div>
+                          <div class="comments-avatar" aria-hidden="true">
+                              <?php echo espaceHtml(mb_strtoupper(mb_substr($comment['username'], 0, 1))); ?>
+                          </div>
                           <div class="comments-body">
                               <div class="comments-meta">
-                                  <span class="comments-author">mateusz</span>
-                                  <time class="comments-date" datetime="2026-11-02">2 listopada 2026, 17:21</time>
+                                  <span class="comments-author">
+                                      <?php echo espaceHtml($comment['username']); ?>
+                                  </span>
+                                  <time class="comments-date"
+                                      datetime="<?php echo espaceHtml($comment['created_at']); ?>">
+                                      <?php echo espaceHtml(date('d.m.Y, H:i', strtotime($comment['created_at']))); ?>
+                                  </time>
                               </div>
-                              <p class="comments-text">Świetny artykuł! Dokładnie tego szukałem, zwłaszcza fragment o
-                                  sesjach.</p>
+                              <p class="comments-text">
+                                  <?php nl2br(espaceHtml($comment['content'])); ?>
+                              </p>
                               <form class="comments-delete-form" method="POST" action="#">
                                   <button class="comments-delete" type="submit">
                                       <i class="fa-regular fa-trash-can"></i> Usuń
@@ -101,19 +124,11 @@
                               </form>
                           </div>
                       </li>
-                      <li class="comments-item">
-                          <div class="comments-avatar" aria-hidden="true">A</div>
-                          <div class="comments-body">
-                              <div class="comments-meta">
-                                  <span class="comments-author">janek</span>
-                                  <time class="comments-date" datetime="2026-11-01">1 listopada 2026, 09:05</time>
-                              </div>
-                              <p class="comments-text">Czy planujesz podobny wpis o zabezpieczaniu formularzy tokenem
-                                  CSRF? Chętnie bym przeczytała.</p>
-                          </div>
-                      </li>
+                      <?php endforeach; ?>
                   </ul>
+                  <?php else:  ?>
                   <p class="comments-empty">Nie ma jeszcze żadnych komentarzy. Bądź pierwszy!</p>
+                  <?php endif; ?>
               </section>
           </section>
       </div>

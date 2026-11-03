@@ -24,7 +24,7 @@ class CommentsRepository
     {
         $stmt = $this->pdo->prepare("SELECT 
         `comments`.`id`, `comments`.`article_id`, `comments`.`user_id`, `comments`.`content`, `comments`.`created_at`, `users`.`username` 
-        FROM `comments` INNER JOIN `users` ON `comments`.`user_id` = `users.id` 
+        FROM `comments` INNER JOIN `users` ON `comments`.`user_id` = `users`.`id` 
         WHERE `comments`.`article_id` = :articleId 
         ORDER BY `comments`.`created_at` DESC");
         $stmt->bindValue(':articleId', $articleId, PDO::PARAM_INT);
