@@ -73,9 +73,8 @@
                       <?php echo csrfField(); ?>
                       <label class="comments-label" for="comment-content">Dodaj komentarz</label>
                       <textarea class="comments-textarea" id="comment-content" name="content" rows="4" maxlength="1000"
-                          placeholder="Napisz, co myślisz o tym artykule..." required>
-                        <?php echo espaceHtml($oldContent ?? ''); ?>
-                    </textarea>
+                          placeholder="Napisz, co myślisz o tym artykule..."
+                          required><?php echo espaceHtml($oldContent ?? ''); ?></textarea>
                       <div class="comments-form-footer">
                           <p class="comments-hint">Maksymalnie 1000 znaków.</p>
                           <button class="comments-button" type="submit">Opublikuj komentarz</button>
@@ -114,9 +113,7 @@
                                       <?php echo espaceHtml(date('d.m.Y, H:i', strtotime($comment['created_at']))); ?>
                                   </time>
                               </div>
-                              <p class="comments-text">
-                                  <?php nl2br(espaceHtml($comment['content'])); ?>
-                              </p>
+                              <p class="comments-text"><?php echo nl2br(espaceHtml($comment['content'])); ?></p>
                               <form class="comments-delete-form" method="POST" action="#">
                                   <button class="comments-delete" type="submit">
                                       <i class="fa-regular fa-trash-can"></i> Usuń
