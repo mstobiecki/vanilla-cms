@@ -55,6 +55,16 @@ switch ($route) {
 
         break;
 
+    case 'comments/delete':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $commentsRepository = new \App\Repository\CommentsRepository($pdo);
+
+        $commentsController = new \App\Frontend\Controller\CommentsController($authService, $commentsRepository);
+        $commentsController->deleteComment();
+
+        break;
+
     case 'account/register':
         $usersRepository = new \App\Repository\UsersRepository($pdo);
         $authService = new \App\Service\AuthService($usersRepository);
