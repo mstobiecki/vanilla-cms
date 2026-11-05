@@ -114,13 +114,18 @@
                                   </time>
                               </div>
                               <p class="comments-text"><?php echo nl2br(espaceHtml($comment['content'])); ?></p>
-                              <form class="comments-delete-form" method="POST" action="#">
+                              <?php if ($currentUser !== null && (int) $currentUser['id'] === (int) $comment['user_id']): ?>
+                              <form class="comments-delete-form" method="POST"
+                                  action="index.php?<?php echo http_build_query(['route' => 'article', 'slug' => $singleArticle->slug, 'action' => 'delete-comment', 'id' => $comment['id']]); ?>">
+                                  <?php echo csrfField(); ?>
                                   <button class="comments-delete" type="submit">
                                       <i class="fa-regular fa-trash-can"></i> Usuń
                                   </button>
                               </form>
+                              <?php endif; ?>
                           </div>
                       </li>
+                      <?php var_dump($comment['id']); ?>
                       <?php endforeach; ?>
                   </ul>
                   <?php else:  ?>
