@@ -20,7 +20,7 @@ class CommentsRepository
 
     }
 
-    public function getCommentByArticleId(int $articleId): array
+    public function getCommentsByArticleId(int $articleId): array
     {
         $stmt = $this->pdo->prepare("SELECT 
         `comments`.`id`, `comments`.`article_id`, `comments`.`user_id`, `comments`.`content`, `comments`.`created_at`, `users`.`username` 

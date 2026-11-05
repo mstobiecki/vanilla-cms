@@ -12,6 +12,22 @@ class ArticlesController extends AbstractController
     {
     }
 
+    private const MAX_COMMENT_LENGTH = 1000;
+
+    private function validateComment(string $content): ?string
+    {
+
+        if (trim($content) === '') {
+            return 'Komentarz nie może być pusty.';
+        }
+
+        if (mb_strlen($content) > self::MAX_COMMENT_LENGTH) {
+            return 'Komentarz nie może mieć więcej jak ' . self::MAX_COMMENT_LENGTH . ' znaków.';
+        }
+
+        return null;
+    }
+
     public function showSingleArticle(string $slug)
     {
         $singleArticle = $this->articlesRepository->showSingleArticle(slug: $slug);
@@ -22,61 +38,38 @@ class ArticlesController extends AbstractController
         }
 
         $currentUser = $this->authService->getCurrentUser();
+        $commentError = '';
+        $content = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($currentUser === null) {
-                header("Location: index.php?" . http_build_query(['route' => 'account/login']));
+                header('Location: index.php?' . http_build_query(['route' => 'account/login']));
                 exit;
             }
 
             $content = trim((string) ($_POST['content'] ?? ''));
+            $commentError = $this->validateComment($content);
 
-            if ($content === '') {
-                http_response_code(422);
+            if ($commentError === null) {
+                $this->commentsRepository->createComment(
+                    articleId: (int) $singleArticle->id,
+                    userId: (int) $currentUser['id'],
+                    content: $content,
+                );
 
-                $this->render('pages/article', [
-                    'singleArticle' => $singleArticle,
-                    'comments' => $this->commentsRepository->getCommentByArticleId($singleArticle->id),
-                    'currentUser' => $currentUser,
-                    'commentError' => 'Komentarz nie może być pusty.',
-                    'oldContent' => $content,
-                ]);
-
-                return;
+                header('Location: index.php?' . http_build_query(['route' => 'article', 'slug' => $slug]) . '#comments');
+                exit;
             }
 
-            if (mb_strlen($content) > 1000) {
-                http_response_code(422);
-
-                $this->render('pages/article', [
-                    'singleArticle' => $singleArticle,
-                    'comments' => $this->commentsRepository->getCommentByArticleId($singleArticle->id),
-                    'currentUser' => $currentUser,
-                    'commentError' => 'Komentarz nie może mieć więcej jak 1000 znaków.',
-                    'oldContent' => $content,
-                ]);
-
-                return;
-            }
-
-            $this->commentsRepository->createComment(
-                articleId: (int) $singleArticle->id,
-                userId: (int) $currentUser['id'],
-                content: (string) $content
-            );
-
-            $redirectUrl = "index.php?" . http_build_query(['route' => 'article', 'slug' => $slug]) . '#comments';
-            header("Location: " . $redirectUrl);
-            exit;
-
+            http_response_code(422);
         }
-
-        $comments = $this->commentsRepository->getCommentByArticleId(articleId: (int) $singleArticle->id);
 
         $this->render('pages/article', [
             'singleArticle' => $singleArticle,
-            'comments' => $comments,
+            'comments' => $this->commentsRepository->getCommentsByArticleId((int) $singleArticle->id),
             'currentUser' => $currentUser,
+            'commentError' => $commentError,
+            'oldContent' => $content,
         ]);
 
     }
