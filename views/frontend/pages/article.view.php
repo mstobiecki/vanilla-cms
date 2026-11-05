@@ -116,7 +116,8 @@
                               <p class="comments-text"><?php echo nl2br(espaceHtml($comment['content'])); ?></p>
                               <?php if ($currentUser !== null && (int) $currentUser['id'] === (int) $comment['user_id']): ?>
                               <form class="comments-delete-form" method="POST"
-                                  action="index.php?<?php http_build_query(['route' => 'comments/delete']) ?>">
+                                  action="index.php?<?php echo http_build_query(['route' => 'comments/delete']) ?>">
+                                  <?php echo csrfField(); ?>
                                   <input type="hidden" name="commentId"
                                       value="<?php echo espaceHtml($comment['id']); ?>" />
                                   <input type="hidden" name="articleSlug"

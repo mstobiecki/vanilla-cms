@@ -32,4 +32,14 @@ class CommentsRepository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function deleteComment(int $commentId, int $userId): bool
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM `comments` WHERE `id` = :commentId AND `user_id` = :userId");
+        $stmt->bindValue(':commentId', $commentId, PDO::PARAM_INT);
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
 }
