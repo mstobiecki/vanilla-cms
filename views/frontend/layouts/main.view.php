@@ -70,6 +70,13 @@
     </p>
     <?php endforeach; ?>
     <?php endif; ?>
+    <?php if (!empty($flash['error'])): ?>
+    <?php foreach ($flash['error'] as $message): ?>
+    <p class="flash flash-error">
+        <?php echo espaceHtml($message); ?>
+    </p>
+    <?php endforeach; ?>
+    <?php endif; ?>
     <?php echo $contents; ?>
     <footer class="footer">
         <div class="container">

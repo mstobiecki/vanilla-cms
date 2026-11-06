@@ -1,17 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Frontend\Controller;
 
 use App\Repository\CommentsRepository;
 use App\Service\AuthService;
+use App\Service\FlashMessages;
 
 class CommentsController
 {
-    public function __construct(private AuthService $authService, private CommentsRepository $commentsRepository)
+    public function __construct(private AuthService $authService, private CommentsRepository $commentsRepository, private FlashMessages $flashMessages)
     {
     }
 
-    public function deleteComment()
+    private function redirectToComments(string $articleSlug): never
+    {
+        header('Location: index.php?' . http_build_query(['route' => 'article', 'slug' => $articleSlug]) . '#comments');
+        exit();
+    }
+
+    public function deleteComment(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $commentId = (int) ($_POST['commentId'] ?? 0);
@@ -25,23 +34,25 @@ class CommentsController
             }
 
             if ($commentId <= 0 || trim($articleSlug) === '') {
-                http_response_code(400);
-                exit('Nieprawidłowe wywołanie adresu URL.');
-            }
 
-            $deletedComment = $this->commentsRepository->deleteComment(commentId: $commentId, userId: $currentUser['id']);
+                $this->flashMessages->add(type: 'error', message: 'Nieprawidłowe wywołanie adresu URL');
+
+                header('Location: index.php');
+                exit();
+
+            }
 
             if ($currentUser['role'] === 'admin') {
-                $deletedCommentAsAdmin = $this->commentsRepository->deleteCommentAsAdmin($commentId);
+                $isDeleted = $this->commentsRepository->deleteCommentAsAdmin($commentId);
+            } else {
+                $isDeleted = $this->commentsRepository->deleteComment(commentId: $commentId, userId: (int) $currentUser['id']);
             }
 
-            if (!$deletedComment && $currentUser['role'] !== 'admin') {
-                http_response_code(404);
-                exit('Nie znaleziono komentarza lub nie masz uprawnień do jego usunięcia.');
+            if (!$isDeleted) {
+                $this->flashMessages->add(type: 'error', message: 'Nie znaleziono komentarza lub nie masz uprawnień do usuwania.');
             }
 
-            header('Location: index.php?' . http_build_query(['route' => 'article', 'slug' => $articleSlug]) . '#comments');
-            exit();
+            $this->redirectToComments(articleSlug: $articleSlug);
         }
 
     }

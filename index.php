@@ -61,8 +61,9 @@ switch ($route) {
         $usersRepository = new \App\Repository\UsersRepository($pdo);
         $authService = new \App\Service\AuthService($usersRepository);
         $commentsRepository = new \App\Repository\CommentsRepository($pdo);
+        $flashMessages = new \App\Service\FlashMessages();
 
-        $commentsController = new \App\Frontend\Controller\CommentsController($authService, $commentsRepository);
+        $commentsController = new \App\Frontend\Controller\CommentsController($authService, $commentsRepository, $flashMessages);
         $commentsController->deleteComment();
 
         break;
