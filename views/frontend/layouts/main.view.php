@@ -28,6 +28,17 @@
         <div class="header-logo">
             <p>Vanilla CMS</p>
         </div>
+        <div class="header-profile">
+            <div class="header-profile-avatar">
+                <span class="header-profile-avatar-letter">M</span>
+            </div>
+            <div class="header-profile-content">
+                <p class="header-profile-username">m100biecki</p>
+            </div>
+            <div class="header-profile-arrow">
+                <p class="header-profile-arrow-icon"><i class="fa-solid fa-angle-down"></i></p>
+            </div>
+        </div>
         <nav class="header-navigation">
             <div class="header-navigation-wrapper">
                 <ul class="header-navigation-list">
