@@ -114,7 +114,7 @@
                                   </time>
                               </div>
                               <p class="comments-text"><?php echo nl2br(espaceHtml($comment['content'])); ?></p>
-                              <?php if ($currentUser !== null && (int) $currentUser['id'] === (int) $comment['user_id']): ?>
+                              <?php if ($currentUser !== null && (int) $currentUser['id'] === (int) $comment['user_id'] || $currentUser !== null && $currentUser['role'] === 'admin'): ?>
                               <form class="comments-delete-form" method="POST"
                                   action="index.php?<?php echo http_build_query(['route' => 'comments/delete']) ?>">
                                   <?php echo csrfField(); ?>

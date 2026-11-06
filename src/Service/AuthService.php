@@ -21,7 +21,7 @@ class AuthService
     {
         $this->checkAddressEmail($email);
 
-        if (mb_strlen($username < 3)) {
+        if (mb_strlen($username) < 3) {
             throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minumum 3 znaki.');
         }
 
@@ -49,12 +49,13 @@ class AuthService
         }
 
         $userAccount = $this->usersReposistory->findUserByEmail(email: $email);
-        ['id' => $id, 'password_hash' => $passwordHash] = $userAccount;
 
         if ($userAccount === null) {
             password_hash($password, PASSWORD_DEFAULT);
             throw new \InvalidArgumentException('Nieprawidłowy adres e-mail lub hasło.');
         }
+
+        ['id' => $id, 'password_hash' => $passwordHash] = $userAccount;
 
 
         if (!password_verify($password, $passwordHash)) {

@@ -117,7 +117,7 @@ class ArticlesRepository
 
     public function updateArticle(int $id, array $articleData)
     {
-        if (trim($articleData['title'] === '')) {
+        if (trim($articleData['title']) === '') {
             throw new \InvalidArgumentException('Tytuł nie może być pusty.');
         }
 
@@ -136,7 +136,7 @@ class ArticlesRepository
         $stmt->execute();
     }
 
-    public function deleteArticle(string $id)
+    public function deleteArticle(int $id)
     {
         if ($id <= 0) {
             throw new \InvalidArgumentException('Nieprawidłowe ID artykułu.');

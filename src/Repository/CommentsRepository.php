@@ -42,4 +42,13 @@ class CommentsRepository
 
         return $stmt->rowCount() > 0;
     }
+
+    public function deleteCommentAsAdmin(int $commentId): bool
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM `comments` WHERE `id` = :commentId");
+        $stmt->bindValue(':commentId', $commentId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
 }
