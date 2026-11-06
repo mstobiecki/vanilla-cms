@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/inc/all.inc.php';
 
 $usersRepository = new \App\Repository\UsersRepository($pdo);

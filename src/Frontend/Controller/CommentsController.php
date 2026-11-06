@@ -31,7 +31,11 @@ class CommentsController
 
             $deletedComment = $this->commentsRepository->deleteComment(commentId: $commentId, userId: $currentUser['id']);
 
-            if (!$deletedComment) {
+            if ($currentUser['role'] === 'admin') {
+                $deletedCommentAsAdmin = $this->commentsRepository->deleteCommentAsAdmin($commentId);
+            }
+
+            if (!$deletedComment && $currentUser['role'] !== 'admin') {
                 http_response_code(404);
                 exit('Nie znaleziono komentarza lub nie masz uprawnień do jego usunięcia.');
             }

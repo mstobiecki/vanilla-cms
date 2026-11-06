@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use PDO;
@@ -10,7 +12,7 @@ class UsersRepository
     {
     }
 
-    public function emailExists(string $email): int
+    public function emailExists(string $email): bool
     {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `email` = :email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
