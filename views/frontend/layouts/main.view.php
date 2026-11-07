@@ -29,14 +29,37 @@
             <p>Vanilla CMS</p>
         </div>
         <div class="header-profile">
-            <div class="header-profile-avatar">
-                <span class="header-profile-avatar-letter">M</span>
-            </div>
-            <div class="header-profile-content">
-                <p class="header-profile-username">m100biecki</p>
-            </div>
-            <div class="header-profile-arrow">
-                <p class="header-profile-arrow-icon"><i class="fa-solid fa-angle-down"></i></p>
+            <button class="header-profile-toggle" type="button">
+                <div class="header-profile-avatar">
+                    <span class="header-profile-avatar-letter">M</span>
+                </div>
+                <div class="header-profile-content">
+                    <p class="header-profile-username">m100biecki</p>
+                </div>
+                <div class="header-profile-arrow">
+                    <p class="header-profile-arrow-icon"><i class="fa-solid fa-angle-down"></i></p>
+                </div>
+            </button>
+
+            <div class="header-profile-card">
+                <div class="header-profile-card-container">
+                    <div class="header-profile-avatar">
+                        <span class="header-profile-avatar-letter">M</span>
+                    </div>
+                    <div class="header-profile-content">
+                        <p class="header-profile-username">m100biecki</p>
+                        <p class="header-profile-email">m100biecki@gmail.com</p>
+                    </div>
+                </div>
+                <ul class="header-profile-list">
+                    <li class="header-profile-item">
+                        <a href="#" class="header-profile-link"><i class="fa-regular fa-user"></i> Mój profil</a>
+                    </li>
+                    <li class="header-profile-item">
+                        <a href="#" class="header-profile-link header-profil-link-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Wyloguj się</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <nav class="header-navigation">
