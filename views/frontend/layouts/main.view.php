@@ -56,7 +56,8 @@
                         <a href="#" class="header-profile-link"><i class="fa-regular fa-user"></i> Mój profil</a>
                     </li>
                     <li class="header-profile-item">
-                        <a href="#" class="header-profile-link header-profil-link-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <a href="#" class="header-profile-link header-profil-link-logout"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i>
                             Wyloguj się</a>
                     </li>
                 </ul>
