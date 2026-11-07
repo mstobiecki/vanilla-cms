@@ -18,7 +18,7 @@
 .header-profile-toggle {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--small-xs-gap);
   padding: 1.5rem 2.5rem;
   font-size: 1.4rem;
   border: none;
@@ -56,7 +56,7 @@
 .header-profile-card {
   flex-direction: column;
   justify-content: center;
-  gap: 3rem;
+  gap: var(--small-xl-gap);
   position: absolute;
   top: calc(100%);
   left: 50%;
@@ -83,7 +83,7 @@
 .header-profile-card-container {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--small-xs-gap);
 }
 
 .header-profile-list {
@@ -100,7 +100,7 @@
 
 .header-profile-link {
   display: flex;
-  gap: 1rem;
+  gap: var(--small-xs-gap);
   text-decoration: none;
   font-size: var(--small-font-size);
   color: var(--color-text);

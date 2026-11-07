@@ -88,6 +88,13 @@ switch ($route) {
 
         break;
 
+    case 'account/profile':
+
+        $profile = new \App\Frontend\Controller\Profile();
+        $profile->showProfile();
+
+        break;
+
     case 'admin/index':
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
