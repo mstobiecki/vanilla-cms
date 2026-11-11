@@ -138,6 +138,27 @@
   gap: var(--small-gap);
 }
 
+.profile-strength {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.profile-strength-bar {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 1rem;
+  background-color: #e9ecef;
+}
+
+.profile-strength-bar-weak {
+  background-color: #f59f00;
+}
+
+.profile-strength-bar-strong {
+  background-color: #2b8a3e;
+}
+
 @media (min-width: 48em) {
   .profile-row {
     grid-template-columns: repeat(2, 1fr);

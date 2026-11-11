@@ -75,7 +75,15 @@
                                         </svg>
                                     </button>
                                 </div>
+                                <div class="profile-strength" aria-hidden="true">
+                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
+                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
+                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
+                                    <span class="profile-strength-bar"></span>
+                                </div>
                             </div>
+
+
 
                             <div class="auth-field">
                                 <label class="auth-label" for="passwordRepeat">Powtórz nowe hasło</label>
@@ -94,10 +102,11 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="auth-button" type="submit">Zapisz zmiany</button>
-                    </form>
                 </div>
+                <button class="auth-button" type="submit">Zapisz zmiany</button>
+                </form>
             </div>
+        </div>
         </div>
     </section>
 </main>
