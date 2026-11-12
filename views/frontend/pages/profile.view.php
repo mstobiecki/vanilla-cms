@@ -76,9 +76,9 @@
                                     </button>
                                 </div>
                                 <div class="profile-strength" aria-hidden="true">
-                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
-                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
-                                    <span class="profile-strength-bar profile-strength-bar-strong"></span>
+                                    <span class="profile-strength-bar"></span>
+                                    <span class="profile-strength-bar"></span>
+                                    <span class="profile-strength-bar"></span>
                                     <span class="profile-strength-bar"></span>
                                 </div>
                             </div>
@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="auth-button" type="submit">Zapisz zmiany</button>
                 </div>
-                <button class="auth-button" type="submit">Zapisz zmiany</button>
                 </form>
             </div>
         </div>
