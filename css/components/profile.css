@@ -83,6 +83,10 @@
   font-size: var(--small-font-size);
 }
 
+.profile .auth-errors {
+  margin: 0;
+}
+
 .profile-form {
   display: flex;
   flex-direction: column;

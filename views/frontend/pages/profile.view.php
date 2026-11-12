@@ -15,6 +15,12 @@
                         <p class="profile-card-paragraph">Zmień nazwę użytkownika lub adres e-mail powiązany z kontem.
                         </p>
                     </header>
+                    <div class="auth-errors" role="alert">
+                        <p class="auth-error">
+                            <i class="auth-error-icon fa-solid fa-circle-exclamation"></i>
+                            Konto z takim adresem e-mail już istnieje.
+                        </p>
+                    </div>
                     <form class="profile-form" action="#" method="POST">
                         <div class="auth-field">
                             <label class="auth-label" for="username">Nazwa użytkownika</label>
@@ -43,6 +49,12 @@
                             zalogowany.
                         </p>
                     </header>
+                    <div class="auth-errors" role="alert">
+                        <p class="auth-error">
+                            <i class="auth-error-icon fa-solid fa-circle-exclamation"></i>
+                            Wprowadzone hasła nie są takie same.
+                        </p>
+                    </div>
                     <form class="profile-form" action="#" method="POST">
                         <div class="auth-field">
                             <label class="auth-label" for="current-password">Aktualne hasło</label>
