@@ -90,5 +90,8 @@ class AuthService
     {
         unset($_SESSION['userId']);
         session_regenerate_id(true);
+
+        header('Location: index.php?' . http_build_query(['route' => 'account/login']));
+        exit;
     }
 }

@@ -54,10 +54,12 @@
                 </div>
                 <ul class="header-profile-list">
                     <li class="header-profile-item">
-                        <a href="#" class="header-profile-link"><i class="fa-regular fa-user"></i> Mój profil</a>
+                        <a href="index.php?" class="header-profile-link"><i class="fa-regular fa-user"></i> Mój
+                            profil</a>
                     </li>
                     <li class="header-profile-item">
-                        <a href="#" class="header-profile-link header-profil-link-logout"><i
+                        <a href="index.php?<?php echo http_build_query(['route' => 'account/logout']); ?>"
+                            class="header-profile-link header-profil-link-logout"><i
                                 class="fa-solid fa-arrow-right-from-bracket"></i>
                             Wyloguj się</a>
                     </li>

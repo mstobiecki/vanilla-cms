@@ -88,6 +88,14 @@ switch ($route) {
 
         break;
 
+    case 'account/logout':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+
+        $authService->logoutAccount();
+
+        break;
+
     case 'account/profile':
 
         $profile = new \App\Frontend\Controller\Profile();
