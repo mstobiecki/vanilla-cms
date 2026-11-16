@@ -8,7 +8,7 @@ use App\Repository\UsersRepository;
 
 class AuthService
 {
-    public function __construct(private UsersRepository $usersReposistory)
+    public function __construct(private UsersRepository $usersRepository)
     {
     }
 
@@ -19,27 +19,37 @@ class AuthService
         }
     }
 
-    public function registerAccount(string $email, string $username, string $password, string $passwordRepeat)
+    private function checkPasswordLength(string $password): void
     {
-        $this->checkAddressEmail($email);
-
-        if (mb_strlen($username) < 3) {
-            throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minumum 3 znaki.');
-        }
-
         if (mb_strlen($password) < 8) {
-            throw new \InvalidArgumentException('Hasło musi się składać z minumum 8 znaków.');
+            throw new \InvalidArgumentException('Hasło musi się składać z minimum 8 znaków.');
         }
+    }
 
+    private function checkPasswords(string $password, string $passwordRepeat): void
+    {
         if ($password !== $passwordRepeat) {
             throw new \InvalidArgumentException('Wprowadzone hasła nie są takie same.');
         }
+    }
 
-        if ($this->usersReposistory->emailExists(email: $email)) {
+    public function registerAccount(string $email, string $username, string $password, string $passwordRepeat)
+    {
+        $this->checkAddressEmail(email: $email);
+
+        if (mb_strlen($username) < 3) {
+            throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minimum 3 znaki.');
+        }
+
+        $this->checkPasswordLength(password: $password);
+
+        $this->checkPasswords(password: $password, passwordRepeat: $passwordRepeat);
+
+        if ($this->usersRepository->emailExists(email: $email)) {
             throw new \InvalidArgumentException('Konto z takim adresem e-mail już istnieje.');
         }
 
-        return $this->usersReposistory->createAccount(email: $email, username: $username, passwordHash: password_hash($password, PASSWORD_DEFAULT));
+        return $this->usersRepository->createAccount(email: $email, username: $username, passwordHash: password_hash($password, PASSWORD_DEFAULT));
     }
 
     public function loginAccount(string $email, string $password)
@@ -50,7 +60,7 @@ class AuthService
             throw new \InvalidArgumentException('Wprowadź swoje hasło.');
         }
 
-        $userAccount = $this->usersReposistory->findUserByEmail(email: $email);
+        $userAccount = $this->usersRepository->findUserByEmail(email: $email);
 
         if ($userAccount === null) {
             password_hash($password, PASSWORD_DEFAULT);
@@ -77,7 +87,7 @@ class AuthService
             return null;
         }
 
-        $user = $this->usersReposistory->findUserById($id);
+        $user = $this->usersRepository->findUserById($id);
 
         if ($user === null) {
             $this->logoutAccount();
@@ -93,5 +103,21 @@ class AuthService
 
         header('Location: index.php?' . http_build_query(['route' => 'account/login']));
         exit;
+    }
+
+    public function changePasswordAccount(int $userId, string $currentPassword, string $newPassword, string $passwordRepeat): void
+    {
+        $passwordHash = $this->usersRepository->findPasswordHashById($userId);
+
+        if ($passwordHash === null || !password_verify($currentPassword, $passwordHash)) {
+            throw new \InvalidArgumentException('Obecne hasło jest nieprawidłowe.');
+        }
+
+        $this->checkPasswordLength($newPassword);
+        $this->checkPasswords($newPassword, $passwordRepeat);
+
+        $this->usersRepository->updatePasswordAccount(userId: $userId, passwordHash: password_hash($newPassword, PASSWORD_DEFAULT));
+
+        session_regenerate_id(true);
     }
 }

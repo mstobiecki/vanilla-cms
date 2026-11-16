@@ -97,9 +97,22 @@ switch ($route) {
         break;
 
     case 'account/profile':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $flashMessages = new \App\Service\FlashMessages();
+        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
 
-        $profile = new \App\Frontend\Controller\Profile();
-        $profile->showProfile();
+        $profileController->showProfile();
+
+        break;
+
+    case 'account/profile/password':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $flashMessages = new \App\Service\FlashMessages();
+        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
+
+        $profileController->changePassword();
 
         break;
 

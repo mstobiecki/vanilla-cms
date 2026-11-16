@@ -15,13 +15,14 @@
                         <p class="profile-card-paragraph">Zmień nazwę użytkownika lub adres e-mail powiązany z kontem.
                         </p>
                     </header>
-                    <div class="auth-errors" role="alert">
+                    <!-- <div class="auth-errors" role="alert">
                         <p class="auth-error">
                             <i class="auth-error-icon fa-solid fa-circle-exclamation"></i>
                             Konto z takim adresem e-mail już istnieje.
                         </p>
-                    </div>
+                    </div> -->
                     <form class="profile-form" action="#" method="POST">
+                        <?php echo csrfField(); ?>
                         <div class="auth-field">
                             <label class="auth-label" for="username">Nazwa użytkownika</label>
                             <input class="auth-input" type="text" id="username" name="username"
@@ -49,17 +50,14 @@
                             zalogowany.
                         </p>
                     </header>
-                    <div class="auth-errors" role="alert">
-                        <p class="auth-error">
-                            <i class="auth-error-icon fa-solid fa-circle-exclamation"></i>
-                            Wprowadzone hasła nie są takie same.
-                        </p>
-                    </div>
-                    <form class="profile-form" action="#" method="POST">
+                    <form class="profile-form"
+                        action="index.php?<?php echo http_build_query(['route' => 'account/profile/password']); ?>"
+                        method="POST">
+                        <?php echo csrfField(); ?>
                         <div class="auth-field">
                             <label class="auth-label" for="current-password">Aktualne hasło</label>
                             <div class="profile-password">
-                                <input class="auth-input" type="password" id="current-password" name="current-password"
+                                <input class="auth-input" type="password" id="current-password" name="currentPassword"
                                     placeholder="Wpisz swoje hasło" autocomplete="current-password" required />
                                 <button class="profile-password-toggle" type="button" aria-label="Pokaż hasło">
                                     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -115,10 +113,9 @@
                             </div>
                         </div>
                         <button class="auth-button" type="submit">Zapisz zmiany</button>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
         </div>
     </section>
 </main>

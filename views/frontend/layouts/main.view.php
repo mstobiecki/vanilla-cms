@@ -54,7 +54,8 @@
                 </div>
                 <ul class="header-profile-list">
                     <li class="header-profile-item">
-                        <a href="index.php?" class="header-profile-link"><i class="fa-regular fa-user"></i> Mój
+                        <a href="index.php?<?php echo http_build_query(['route' => 'account/profile']); ?>"
+                            class="header-profile-link"><i class="fa-regular fa-user"></i> Mój
                             profil</a>
                     </li>
                     <li class="header-profile-item">

@@ -38,15 +38,33 @@ class UsersRepository
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function findUserById(int $id): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT `id`, `email`, `role` FROM `users` WHERE `id` = :id");
+        $stmt = $this->pdo->prepare("SELECT `id`, `role` FROM `users` WHERE `id` = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public function findPasswordHashById(int $userId): ?string
+    {
+        $stmt = $this->pdo->prepare("SELECT `password_hash` FROM `users` WHERE `id` = :userId");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $hash = $stmt->fetchColumn();
+
+        return $hash === false ? null : (string) $hash;
+    }
+
+    public function updatePasswordAccount(int $userId, string $passwordHash): void
+    {
+        $stmt = $this->pdo->prepare("UPDATE `users` SET `password_hash` = :passwordHash WHERE `id` = :userId");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':passwordHash', $passwordHash, PDO::PARAM_STR);
+        $stmt->execute();
     }
 }
