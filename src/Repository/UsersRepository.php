@@ -21,6 +21,25 @@ class UsersRepository
         return (int) $stmt->fetchColumn() > 0;
     }
 
+    public function emailExistsForOtherUser(int $userId, string $email): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT 1 FROM `users` WHERE `email` = :email AND `id` != :userId LIMIT 1");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchColumn() !== false;
+    }
+
+    public function usernameExistsForOtherUser(int $userId, string $username): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT 1 FROM `users` WHERE `username` = :username AND `id` != :userId LIMIT 1");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchColumn() !== false;
+    }
     public function usernameExists(string $username): bool
     {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `username` = :username");
@@ -72,10 +91,29 @@ class UsersRepository
     public function findUserProfileById(int $userId): ?array
     {
         $stmt = $this->pdo->prepare("SELECT `email`, `username`, `password_hash` FROM `users` WHERE `id` = :userId");
-        $stmt->bindValue(':userId', $userId, PDO::PARAM_STR);
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public function fetchUserProfile(int $userId): ?array
+    {
+        $stmt = $this->pdo->prepare("SELECT `id`, `username`, `email` FROM `users` WHERE `id` = :userId");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+    public function updateProfile(int $userId, string $username, string $email): void
+    {
+        $stmt = $this->pdo->prepare(
+            "UPDATE `users` SET `username` = :username, `email` = :email WHERE `id` = :userId"
+        );
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     public function updatePasswordAccount(int $userId, string $passwordHash): void

@@ -28,12 +28,14 @@
                         <div class="auth-field">
                             <label class="auth-label" for="username">Nazwa użytkownika</label>
                             <input class="auth-input" type="text" id="username" name="username"
-                                placeholder="Podaj nazwę użytkownika" autocomplete="username" />
+                                placeholder="Podaj nazwę użytkownika" autocomplete="username"
+                                value="<?php echo espaceHtml($userProfile['username']); ?>" />
                         </div>
                         <div class="auth-field">
                             <label class="auth-label" for="email">Adres e-mail</label>
                             <input class="auth-input" type="email" id="email" name="email"
-                                placeholder="jan.kowalski@example.com" autocomplete="email" required />
+                                placeholder="jan.kowalski@example.com" autocomplete="email"
+                                value="<?php echo espaceHtml($_POST['email'] ?? $userProfile['email']); ?>" required />
                         </div>
                         <div class="auth-field">
                             <label class="auth-label" for="account-password">Hasło</label>

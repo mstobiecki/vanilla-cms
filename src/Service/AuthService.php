@@ -12,7 +12,7 @@ class AuthService
     {
     }
 
-    private function checkAddressEmail(string $email)
+    private function validateAddressEmail(string $email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new \InvalidArgumentException('Podaj prawidłowy adres e-mail.');
@@ -26,6 +26,13 @@ class AuthService
         }
     }
 
+    private function checkUsernameLength(string $username): void
+    {
+        if (mb_strlen($username) < 3) {
+            throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minimum 3 znaki.');
+        }
+    }
+
     private function checkPasswords(string $password, string $passwordRepeat): void
     {
         if ($password !== $passwordRepeat) {
@@ -33,28 +40,41 @@ class AuthService
         }
     }
 
+    private function checkEmailExists(string $email): void
+    {
+        if ($this->usersRepository->emailExists(email: $email)) {
+            throw new \InvalidArgumentException('Konto z takim adresem e-mail już istnieje.');
+        }
+    }
+
+    private function checkUsernameExists(string $username): void
+    {
+        if ($this->usersRepository->usernameExists(username: $username)) {
+            throw new \InvalidArgumentException('Wprowadzana nazwa użytkownika jest już zajęta.');
+        }
+
+    }
+
     public function registerAccount(string $email, string $username, string $password, string $passwordRepeat)
     {
-        $this->checkAddressEmail(email: $email);
+        $this->validateAddressEmail(email: $email);
 
-        if (mb_strlen($username) < 3) {
-            throw new \InvalidArgumentException('Nazwa użytkownika musi posiadać minimum 3 znaki.');
-        }
+        $this->checkUsernameLength($username);
 
         $this->checkPasswordLength(password: $password);
 
         $this->checkPasswords(password: $password, passwordRepeat: $passwordRepeat);
 
-        if ($this->usersRepository->emailExists(email: $email)) {
-            throw new \InvalidArgumentException('Konto z takim adresem e-mail już istnieje.');
-        }
+        $this->checkUsernameExists(username:$username);
+
+        $this->checkEmailExists(email: $email);
 
         return $this->usersRepository->createAccount(email: $email, username: $username, passwordHash: password_hash($password, PASSWORD_DEFAULT));
     }
 
     public function loginAccount(string $email, string $password)
     {
-        $this->checkAddressEmail($email);
+        $this->validateAddressEmail($email);
 
         if ($password === '') {
             throw new \InvalidArgumentException('Wprowadź swoje hasło.');
@@ -96,6 +116,20 @@ class AuthService
         return $user;
     }
 
+    public function getProfileUser(): ?array
+    {
+        $userId = (int) ($_SESSION['userId'] ?? 0);
+
+        if ($userId <= 0) {
+            return null;
+        }
+
+        $userProfile = $this->usersRepository->fetchUserProfile(userId: (int) $userId);
+
+        return $userProfile;
+
+    }
+
     public function logoutAccount()
     {
         unset($_SESSION['userId']);
@@ -105,30 +139,40 @@ class AuthService
         exit;
     }
 
-    public function updateAccount(int $userId, string $username, string $email, string $password): array
+    public function updateAccount(int $userId, string $username, string $email, string $password): void
     {
-        $user = $this->usersRepository->findUserProfileById(userId:$userId);
+        $username = trim($username);
+        $email = mb_strtolower(trim($email));
+
+        $user = $this->usersRepository->findUserProfileById(userId: $userId);
 
         if ($user === null) {
             $this->logoutAccount();
         }
 
-        if (mb_strlen($username) < 3) {
-            throw new \InvalidArgumentException('Nazwa użytkownika nie może być krótsza jak 3 litery.');
-        }
+        $this->checkUsernameLength($username);
+        $this->validateAddressEmail($email);
 
-        $this->checkAddressEmail($email);
-        $this->checkPasswordLength($password);
-
-        $isValidatePassword = password_verify($password, $user['password_hash']);
-
-        if (!$isValidatePassword) {
+        if (!password_verify($password, $user['password_hash'])) {
             throw new \InvalidArgumentException('Wprowadzone hasło do konta jest nieprawidłowe.');
         }
 
-        $isUsernameExist = $this->usersRepository->usernameExists(username: $username);
+        if ($this->usersRepository->usernameExistsForOtherUser($userId, $username)) {
+            throw new \InvalidArgumentException('Wprowadzana nazwa użytkownika jest już zajęta.');
+        }
 
-        return $user;
+        if ($this->usersRepository->emailExistsForOtherUser($userId, $email)) {
+            throw new \InvalidArgumentException('Konto z takim adresem e-mail już istnieje.');
+        }
+
+        try {
+            $this->usersRepository->updateProfile($userId, $username, $email);
+        } catch (\PDOException $e) {
+            if ($e->getCode() === '23000') {
+                throw new \InvalidArgumentException('Nazwa użytkownika lub adres e-mail jest już zajęty.');
+            }
+            throw $e;
+        }
     }
 
     public function changePasswordAccount(int $userId, string $currentPassword, string $newPassword, string $passwordRepeat): void
