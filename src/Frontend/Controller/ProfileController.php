@@ -34,7 +34,31 @@ class ProfileController extends AbstractController
 
     public function showProfile(): void
     {
-        $this->render('pages/profile', []);
+        if ($this->requireCurrentUser()) {
+            $this->render('pages/profile', []);
+        }
+    }
+
+    public function updateAccount()
+    {
+        $currentUser = $this->requireCurrentUser();
+        $username = '';
+        $email = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = (string) ($_POST['username'] ?? '');
+            $email = (string) ($_POST['email'] ?? '');
+            $password = (string) ($_POST['password'] ?? '');
+
+            try {
+                $user = $this->authService->updateAccount((int) $currentUser['id'], $username, $email, $password);
+                $this->flashMessages->add('success', 'Dane konta zostały zaktualizowane.');
+                $this->redirectToAccountProfile();
+            } catch (\InvalidArgumentException $e) {
+                $this->flashMessages->add('error', $e->getMessage());
+                $this->redirectToAccountProfile();
+            }
+        }
     }
 
     public function changePassword(): void

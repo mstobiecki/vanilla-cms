@@ -86,9 +86,9 @@ class AdminPagesController extends AdminAbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $articleData = $this->getArticleData();
 
             try {
+                $articleData = $this->getArticleData();
                 $isSlugExists = $this->articlesRepository->checkSlugExists(slug: $articleData['slug']);
 
                 if ($isSlugExists) {

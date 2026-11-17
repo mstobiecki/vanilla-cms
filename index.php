@@ -116,6 +116,17 @@ switch ($route) {
 
         break;
 
+    case 'account/profile/update':
+        $usersRepository = new \App\Repository\UsersRepository($pdo);
+        $authService = new \App\Service\AuthService($usersRepository);
+        $flashMessages = new \App\Service\FlashMessages();
+        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
+
+        $profileController->updateAccount();
+
+        break;
+
+
     case 'admin/index':
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);

@@ -105,6 +105,32 @@ class AuthService
         exit;
     }
 
+    public function updateAccount(int $userId, string $username, string $email, string $password): array
+    {
+        $user = $this->usersRepository->findUserProfileById(userId:$userId);
+
+        if ($user === null) {
+            $this->logoutAccount();
+        }
+
+        if (mb_strlen($username) < 3) {
+            throw new \InvalidArgumentException('Nazwa użytkownika nie może być krótsza jak 3 litery.');
+        }
+
+        $this->checkAddressEmail($email);
+        $this->checkPasswordLength($password);
+
+        $isValidatePassword = password_verify($password, $user['password_hash']);
+
+        if (!$isValidatePassword) {
+            throw new \InvalidArgumentException('Wprowadzone hasło do konta jest nieprawidłowe.');
+        }
+
+        $isUsernameExist = $this->usersRepository->usernameExists(username: $username);
+
+        return $user;
+    }
+
     public function changePasswordAccount(int $userId, string $currentPassword, string $newPassword, string $passwordRepeat): void
     {
         $passwordHash = $this->usersRepository->findPasswordHashById($userId);

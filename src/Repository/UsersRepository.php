@@ -21,6 +21,15 @@ class UsersRepository
         return (int) $stmt->fetchColumn() > 0;
     }
 
+    public function usernameExists(string $username): bool
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `username` = :username");
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn() > 0;
+    }
+
     public function createAccount(string $email, string $username, string $passwordHash): int
     {
         $stmt = $this->pdo->prepare("INSERT INTO `users` (`email`, `username`, `password_hash`) VALUES (:email, :username, :passwordHash)");
@@ -58,6 +67,15 @@ class UsersRepository
         $hash = $stmt->fetchColumn();
 
         return $hash === false ? null : (string) $hash;
+    }
+
+    public function findUserProfileById(int $userId): ?array
+    {
+        $stmt = $this->pdo->prepare("SELECT `email`, `username`, `password_hash` FROM `users` WHERE `id` = :userId");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function updatePasswordAccount(int $userId, string $passwordHash): void

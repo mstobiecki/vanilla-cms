@@ -21,7 +21,9 @@
                             Konto z takim adresem e-mail już istnieje.
                         </p>
                     </div> -->
-                    <form class="profile-form" action="#" method="POST">
+                    <form class="profile-form"
+                        action="index.php?<?php echo http_build_query(['route' => 'account/profile/update']); ?>"
+                        method="POST">
                         <?php echo csrfField(); ?>
                         <div class="auth-field">
                             <label class="auth-label" for="username">Nazwa użytkownika</label>
