@@ -9,8 +9,9 @@ use App\Service\FlashMessages;
 
 class ProfileController extends AbstractController
 {
-    public function __construct(private AuthService $authService, private FlashMessages $flashMessages)
+    public function __construct(AuthService $authService, private FlashMessages $flashMessages)
     {
+        parent::__construct($authService);
     }
 
     private function redirectToAccountProfile(): never
@@ -36,7 +37,7 @@ class ProfileController extends AbstractController
     {
         if ($this->requireCurrentUser()) {
 
-            $userProfile = $this->authService->getProfileUser();
+            $userProfile = $this->authService->getCurrentUser();
 
             $this->render('pages/profile', [
                 'userProfile' => $userProfile,
@@ -47,8 +48,6 @@ class ProfileController extends AbstractController
     public function updateAccount()
     {
         $currentUser = $this->requireCurrentUser();
-        $username = '';
-        $email = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = (string) ($_POST['username'] ?? '');

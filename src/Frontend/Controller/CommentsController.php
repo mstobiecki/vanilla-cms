@@ -12,6 +12,7 @@ class CommentsController
 {
     public function __construct(private AuthService $authService, private CommentsRepository $commentsRepository, private FlashMessages $flashMessages)
     {
+        parent::__construct($authService);
     }
 
     private function redirectToComments(string $articleSlug): never

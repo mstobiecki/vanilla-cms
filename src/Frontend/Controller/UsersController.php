@@ -10,9 +10,10 @@ use App\Service\FlashMessages;
 class UsersController extends AbstractController
 {
     public function __construct(
-        private AuthService $authService,
+        AuthService $authService,
         private FlashMessages $flashMessages
     ) {
+        parent::__construct($authService);
     }
 
     public function registerAccount()

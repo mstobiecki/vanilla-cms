@@ -8,8 +8,16 @@ use App\Repository\UsersRepository;
 
 class AuthService
 {
+    private ?array $currentUser = null;
+    private bool $currentUserLoaded = false;
+
     public function __construct(private UsersRepository $usersRepository)
     {
+    }
+
+    private function getSessionUserId(): int
+    {
+        return (int) ($_SESSION['userId'] ?? 0);
     }
 
     private function validateAddressEmail(string $email)
@@ -101,34 +109,25 @@ class AuthService
 
     public function getCurrentUser(): ?array
     {
-        $id = (int) ($_SESSION['userId'] ?? 0);
-
-        if ($id <= 0) {
-            return null;
+        if ($this->currentUserLoaded) {
+            return $this->currentUser;
         }
 
-        $user = $this->usersRepository->findUserById($id);
+        $id = $this->getSessionUserId();
 
-        if ($user === null) {
-            $this->logoutAccount();
+        if ($id > 0) {
+            $this->currentUser = $this->usersRepository->findUserById($id);
+
+            if ($this->currentUser === null) {
+                $this->logoutAccount();
+            }
         }
 
-        return $user;
+        $this->currentUserLoaded = true;
+
+        return $this->currentUser;
     }
 
-    public function getProfileUser(): ?array
-    {
-        $userId = (int) ($_SESSION['userId'] ?? 0);
-
-        if ($userId <= 0) {
-            return null;
-        }
-
-        $userProfile = $this->usersRepository->fetchUserProfile(userId: (int) $userId);
-
-        return $userProfile;
-
-    }
 
     public function logoutAccount()
     {

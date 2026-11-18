@@ -10,8 +10,9 @@ use App\Service\AuthService;
 
 class ArticlesController extends AbstractController
 {
-    public function __construct(private ArticlesRepository $articlesRepository, private CommentsRepository $commentsRepository, private AuthService $authService)
+    public function __construct(private ArticlesRepository $articlesRepository, private CommentsRepository $commentsRepository, AuthService $authService)
     {
+        parent::__construct($authService);
     }
 
     private const MAX_COMMENT_LENGTH = 1000;

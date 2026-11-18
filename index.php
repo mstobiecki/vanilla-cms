@@ -39,7 +39,7 @@ switch ($route) {
         $page = (string) ($_GET['page'] ?? 'index');
 
         $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $pagesController = new \App\Frontend\Controller\PagesController($articlesRepository);
+        $pagesController = new \App\Frontend\Controller\PagesController($articlesRepository, $authService);
 
         $pagesController->showIndexPage();
         break;
@@ -182,6 +182,6 @@ switch ($route) {
         break;
 
     default:
-        $notFoundController = new \App\Frontend\Controller\NotFoundController();
+        $notFoundController = new \App\Frontend\Controller\NotFoundController($authService);
         $notFoundController->error404();
 }

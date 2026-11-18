@@ -71,7 +71,7 @@ class UsersRepository
 
     public function findUserById(int $id): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT `id`, `role` FROM `users` WHERE `id` = :id");
+        $stmt = $this->pdo->prepare("SELECT `id`, `role`, `username`, `email` FROM `users` WHERE `id` = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 

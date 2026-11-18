@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace App\Frontend\Controller;
 
+use App\Service\AuthService;
+
 abstract class AbstractController
 {
+    public function __construct(protected AuthService $authService)
+    {
+    }
+
     protected function render($view, $params)
     {
         $params['flash'] = (new \App\Service\FlashMessages())->consume();
@@ -15,6 +21,7 @@ abstract class AbstractController
         require __DIR__ . '/../../../views/frontend/' . $view . '.view.php';
         $contents = ob_get_clean();
 
+        $currentUser = $this->authService->getCurrentUser();
         require __DIR__ . '/../../../views/frontend/layouts/main.view.php';
     }
 

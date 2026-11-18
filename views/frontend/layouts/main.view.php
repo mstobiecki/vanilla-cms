@@ -25,33 +25,43 @@
 </head>
 
 <body>
+    <h1><?php var_dump($currentUser);?></h1>
     <header class="header">
         <div class="header-logo">
             <p>Vanilla CMS</p>
         </div>
+        <?php if (!empty($currentUser)): ?>
         <div class="header-profile">
             <button class="header-profile-toggle" type="button">
                 <div class="header-profile-avatar">
-                    <span class="header-profile-avatar-letter">M</span>
+                    <span class="header-profile-avatar-letter">
+                        <?php echo espaceHtml(mb_strtoupper(mb_substr($currentUser['username'], 0, 1, 'UTF-8'), 'UTF-8')); ?>
+                    </span>
                 </div>
                 <div class="header-profile-content">
-                    <p class="header-profile-username">m100biecki</p>
+                    <p class="header-profile-username">
+                        <?php echo espaceHtml($currentUser['username']); ?>
+                    </p>
                 </div>
                 <div class="header-profile-arrow">
                     <p class="header-profile-arrow-icon"><i class="fa-solid fa-angle-down"></i></p>
                 </div>
             </button>
-
             <div class="header-profile-card">
                 <div class="header-profile-card-container">
                     <div class="header-profile-avatar">
                         <span class="header-profile-avatar-letter">M</span>
                     </div>
                     <div class="header-profile-content">
-                        <p class="header-profile-username">m100biecki</p>
-                        <p class="header-profile-email">m100biecki@gmail.com</p>
+                        <p class="header-profile-username">
+                            <?php echo espaceHtml($currentUser['username']); ?>
+                        </p>
+                        <p class="header-profile-email">
+                            <?php echo espaceHtml($currentUser['email']); ?>
+                        </p>
                     </div>
                 </div>
+
                 <ul class="header-profile-list">
                     <li class="header-profile-item">
                         <a href="index.php?<?php echo http_build_query(['route' => 'account/profile']); ?>"
@@ -67,6 +77,7 @@
                 </ul>
             </div>
         </div>
+        <?php endif; ?>
         <nav class="header-navigation">
             <div class="header-navigation-wrapper">
                 <ul class="header-navigation-list">

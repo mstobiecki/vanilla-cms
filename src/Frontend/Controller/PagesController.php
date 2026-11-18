@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Frontend\Controller;
 
 use App\Repository\ArticlesRepository;
+use App\Service\AuthService;
 
 class PagesController extends AbstractController
 {
-    public function __construct(private ArticlesRepository $articlesRepository)
+    public function __construct(private ArticlesRepository $articlesRepository, AuthService $authService)
     {
+        parent::__construct($authService);
     }
 
     public function showIndexPage()
