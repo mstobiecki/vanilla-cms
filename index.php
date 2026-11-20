@@ -2,10 +2,39 @@
 
 declare(strict_types=1);
 
+use App\Admin\Controller\AdminPagesController;
+use App\Frontend\Controller\ArticlesController;
+use App\Frontend\Controller\CommentsController;
+use App\Frontend\Controller\NotFoundController;
+use App\Frontend\Controller\PagesController;
+use App\Frontend\Controller\ProfileController;
+use App\Frontend\Controller\UsersController;
+use App\Repository\ArticlesRepository;
+use App\Repository\CommentsRepository;
+use App\Repository\UsersRepository;
+use App\Service\AuthService;
+use App\Service\CsrfService;
+use App\Service\FlashMessages;
+use App\Service\ImageUploader;
+
 require __DIR__ . '/inc/all.inc.php';
 
-$usersRepository = new \App\Repository\UsersRepository($pdo);
-$authService = new \App\Service\AuthService($usersRepository);
+$usersRepository = new UsersRepository($pdo);
+$articlesRepository = new ArticlesRepository($pdo);
+$commentsRepository = new CommentsRepository($pdo);
+
+$authService = new AuthService($usersRepository);
+$csrfService = new CsrfService();
+$flashMessages = new FlashMessages();
+$imageUploader = new ImageUploader();
+
+$pagesController = new PagesController($articlesRepository, $authService);
+$articlesController = new ArticlesController($articlesRepository, $commentsRepository, $authService);
+$commentsController = new CommentsController($authService, $commentsRepository, $flashMessages);
+$usersController = new UsersController($authService, $flashMessages);
+$profileController = new ProfileController($authService, $flashMessages);
+$adminPagesController = new AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
+$notFoundController = new NotFoundController($authService);
 
 $route = (string) ($_GET['route'] ?? 'pages');
 
@@ -13,175 +42,80 @@ if (str_starts_with($route, 'admin/')) {
     $currentUser = $authService->getCurrentUser();
 
     if ($currentUser === null) {
-        header("Location: index.php?route=account/login");
+        header('Location: index.php?' . http_build_query(['route' => 'account/login']));
         exit;
     }
 
     if ($currentUser['role'] !== 'admin') {
-        header("Location: index.php");
+        header('Location: index.php');
         exit;
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $csrfService = new \App\Service\CsrfService();
 
-    if (!$csrfService->isValid((string) ($_POST['csrf_token'] ?? ''))) {
-        http_response_code(403);
-        exit('Nieprawidłowy lub wygasły token formularza. Odśwież stronę i spróbuj ponownie.');
-    }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$csrfService->isValid((string) ($_POST['csrf_token'] ?? ''))) {
+    http_response_code(403);
+    exit('Nieprawidłowy lub wygasły token formularza. Odśwież stronę i spróbuj ponownie.');
 }
 
 switch ($route) {
 
     case 'pages':
-        $page = (string) ($_GET['page'] ?? 'index');
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $pagesController = new \App\Frontend\Controller\PagesController($articlesRepository, $authService);
-
         $pagesController->showIndexPage();
         break;
 
     case 'article':
-        $slug = (string) ($_GET['slug'] ?? '');
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $commentsRepository = new \App\Repository\CommentsRepository($pdo);
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-
-        $articlesController = new \App\Frontend\Controller\ArticlesController($articlesRepository, $commentsRepository, $authService);
-        $articlesController->showSingleArticle(slug: $slug);
-
+        $articlesController->showSingleArticle(slug: (string) ($_GET['slug'] ?? ''));
         break;
 
     case 'comments/delete':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $commentsRepository = new \App\Repository\CommentsRepository($pdo);
-        $flashMessages = new \App\Service\FlashMessages();
-
-        $commentsController = new \App\Frontend\Controller\CommentsController($authService, $commentsRepository, $flashMessages);
         $commentsController->deleteComment();
-
         break;
 
     case 'account/register':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $flashMessages = new \App\Service\FlashMessages();
-
-        $usersController = new \App\Frontend\Controller\UsersController($authService, $flashMessages);
         $usersController->registerAccount();
-
         break;
 
     case 'account/login':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $flashMessages = new \App\Service\FlashMessages();
-
-        $usersController = new \App\Frontend\Controller\UsersController($authService, $flashMessages);
         $usersController->loginAccount();
-
         break;
 
     case 'account/logout':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-
         $authService->logoutAccount();
-
         break;
 
     case 'account/profile':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $flashMessages = new \App\Service\FlashMessages();
-        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
-
         $profileController->showProfile();
-
         break;
 
     case 'account/profile/password':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $flashMessages = new \App\Service\FlashMessages();
-        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
-
         $profileController->changePassword();
-
         break;
 
     case 'account/profile/update':
-        $usersRepository = new \App\Repository\UsersRepository($pdo);
-        $authService = new \App\Service\AuthService($usersRepository);
-        $flashMessages = new \App\Service\FlashMessages();
-        $profileController = new \App\Frontend\Controller\ProfileController($authService, $flashMessages);
-
         $profileController->updateAccount();
-
         break;
-
 
     case 'admin/index':
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $imageUploader = new App\Service\ImageUploader();
-        $flashMessages = new App\Service\FlashMessages();
-
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->showIndexPage();
-
-        break;
-
-    case 'admin/articles/create':
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $imageUploader = new App\Service\ImageUploader();
-        $flashMessages = new App\Service\FlashMessages();
-
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
-        $adminPagesController->createArticle();
-
-        break;
-    case 'admin/articles/delete':
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $imageUploader = new App\Service\ImageUploader();
-        $flashMessages = new App\Service\FlashMessages();
-
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
-        $adminPagesController->deleteArticle();
-
         break;
 
     case 'admin/articles/list':
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $imageUploader = new App\Service\ImageUploader();
-        $flashMessages = new App\Service\FlashMessages();
-
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->showAllArticles();
+        break;
 
+    case 'admin/articles/create':
+        $adminPagesController->createArticle();
         break;
 
     case 'admin/articles/edit':
-
-        $articlesRepository = new \App\Repository\ArticlesRepository($pdo);
-        $imageUploader = new App\Service\ImageUploader();
-        $flashMessages = new App\Service\FlashMessages();
-
-        $adminPagesController = new \App\Admin\Controller\AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
         $adminPagesController->editArticle();
+        break;
 
+    case 'admin/articles/delete':
+        $adminPagesController->deleteArticle();
         break;
 
     default:
-        $notFoundController = new \App\Frontend\Controller\NotFoundController($authService);
         $notFoundController->error404();
 }

@@ -25,7 +25,6 @@
 </head>
 
 <body>
-    <h1><?php var_dump($currentUser);?></h1>
     <header class="header">
         <div class="header-logo">
             <p>Vanilla CMS</p>
