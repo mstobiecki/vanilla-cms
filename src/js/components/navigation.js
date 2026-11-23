@@ -10,7 +10,7 @@ const displayNavigation = () => {
     ".header-navigation-close-button",
   );
 
-  const desktopQuery = window.matchMedia("(min-width: 75em)");
+  const desktopQuery = window.matchMedia("(min-width: 57em)");
 
   const handleNavigation = () => {
     if (desktopQuery.matches) {

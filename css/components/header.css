@@ -1,5 +1,6 @@
 :root {
   --color-text: #0d0a0b;
+  --color-text-header: #2c3e50;
 }
 
 .header {
@@ -12,7 +13,7 @@
 .header-logo-link {
   font-size: 2.5rem;
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--color-text-header);
 }
 
 .header-profile {
@@ -215,5 +216,51 @@
   .header-profile-avatar-letter {
     padding: 1rem;
     font-size: var(--small-font-size);
+  }
+}
+
+@media (min-width: 57em) {
+  .header {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-width: 100rem;
+    max-width: 160rem;
+    margin: 0 auto;
+  }
+  .header-navigation-wrapper {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    z-index: 100;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0%);
+    transition: all 0.5s;
+  }
+
+  .header-navigation-list {
+    flex-direction: row;
+  }
+
+  .header-navigation-link {
+    text-transform: none;
+    font-size: var(--medium-font-size);
+    color: var(--color-text-header);
+  }
+
+  .header-navigation-button {
+    display: none;
   }
 }
