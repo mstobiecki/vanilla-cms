@@ -26,7 +26,8 @@
 
 <body>
     <header class="header">
-        <div class="header-logo">
+        <div class="header-logo-container">
+            <i class="header-logo-icon fa-solid fa-cube"></i>
             <a class="header-logo-link" href="index.php">Vanilla CMS</a>
         </div>
         <?php if (!empty($currentUser)): ?>
