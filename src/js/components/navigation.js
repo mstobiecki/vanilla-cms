@@ -1,22 +1,30 @@
 const displayNavigation = () => {
-    const navigationWrapper = document.querySelector('.header-navigation-wrapper'); 
-    const navigationButton = document.querySelector('.header-navigation-hamburger'); 
-    const navigationLinks = document.querySelectorAll('.header-navigation-link'); 
-    const navigationCloseButton = document.querySelector('.header-navigation-close-button');
+  const navigationWrapper = document.querySelector(
+    ".header-navigation-wrapper",
+  );
+  const navigationButton = document.querySelector(
+    ".header-navigation-hamburger",
+  );
+  const navigationLinks = document.querySelectorAll(".header-navigation-link");
+  const navigationCloseButton = document.querySelector(
+    ".header-navigation-close-button",
+  );
 
-    const desktopQuery = window.matchMedia('(min-width: 75em)');
+  const desktopQuery = window.matchMedia("(min-width: 75em)");
 
-    const handleNavigation = () => {
-        if (desktopQuery.matches) {
-            return;
-        }
-        navigationWrapper.classList.toggle('header-navigation-open');
+  const handleNavigation = () => {
+    if (desktopQuery.matches) {
+      return;
     }
-  
-    navigationButton.addEventListener('click', handleNavigation); 
-    navigationCloseButton.addEventListener('click', handleNavigation);
+    navigationWrapper.classList.toggle("header-navigation-open");
+  };
 
-    navigationLinks.forEach((link) => link.addEventListener('click', handleNavigation)); 
+  navigationButton.addEventListener("click", handleNavigation);
+  navigationCloseButton.addEventListener("click", handleNavigation);
+
+  navigationLinks.forEach((link) =>
+    link.addEventListener("click", handleNavigation),
+  );
 };
 
 export default displayNavigation;

@@ -27,7 +27,7 @@
 <body>
     <header class="header">
         <div class="header-logo">
-            <p>Vanilla CMS</p>
+            <a class="header-logo-link" href="index.php">Vanilla CMS</a>
         </div>
         <?php if (!empty($currentUser)): ?>
         <div class="header-profile">
