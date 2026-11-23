@@ -8,9 +8,9 @@ use App\Repository\CommentsRepository;
 use App\Service\AuthService;
 use App\Service\FlashMessages;
 
-class CommentsController
+class CommentsController extends AbstractController
 {
-    public function __construct(private AuthService $authService, private CommentsRepository $commentsRepository, private FlashMessages $flashMessages)
+    public function __construct(AuthService $authService, private CommentsRepository $commentsRepository, private FlashMessages $flashMessages)
     {
         parent::__construct($authService);
     }

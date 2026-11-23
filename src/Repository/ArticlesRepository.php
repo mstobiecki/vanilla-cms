@@ -27,6 +27,14 @@ class ArticlesRepository
         );
     }
 
+    public function countAllArticles(): ?int
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as `countArticles` FROM `articles`");
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC)['countArticles'] ?: null;
+    }
+
     public function showSingleArticle(string $slug): ?ArticleModel
     {
         $stmt = $this->pdo->prepare("SELECT * FROM `articles` WHERE `slug` = :slug");

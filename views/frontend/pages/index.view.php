@@ -83,8 +83,20 @@
                         <i class="statistics-icon fa-solid fa-pen-to-square"></i>
                     </div>
                     <div class="statistics-text">
-                        <span class="statistics-number">24</span>
-                        <p class="statistics-category">Artykuły</p>
+                        <span class="statistics-number">
+                            <?php echo espaceHtml($countArticles); ?>
+                        </span>
+                        <p class="statistics-category">
+                            <?php if ($countArticles === 1): ?>
+                            Artykuł
+
+                            <?php elseif ($countArticles < 5): ?>
+                            Artykuły
+
+                            <?php elseif ($countArticles > 4): ?>
+                            Artykułów
+                            <?php endif; ?>
+                        </p>
                     </div>
                 </li>
                 <li class="statistics-item">

@@ -23,9 +23,12 @@ class PagesController extends AbstractController
             $isEmptyArticles = true;
         }
 
+        $countArticles = $this->articlesRepository->countAllArticles();
+
         $this->render('pages/index', [
             'isEmptyArticles' => $isEmptyArticles,
-            'allArticles' => $allArticles
+            'allArticles' => $allArticles,
+            'countArticles' => $countArticles,
         ]);
     }
 }

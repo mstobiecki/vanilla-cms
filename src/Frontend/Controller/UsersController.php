@@ -16,8 +16,18 @@ class UsersController extends AbstractController
         parent::__construct($authService);
     }
 
+    private function redirectUserLogin(): void
+    {
+        if ($this->authService->getCurrentUser()) {
+            header('Location: index.php');
+            exit;
+        }
+    }
+
     public function registerAccount()
     {
+        $this->redirectUserLogin();
+
         $errors = [];
         $email = '';
         $username = '';
@@ -48,6 +58,9 @@ class UsersController extends AbstractController
 
     public function loginAccount()
     {
+
+        $this->redirectUserLogin();
+
         $errors = [];
         $email = '';
 
