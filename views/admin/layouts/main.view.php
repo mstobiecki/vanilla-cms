@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/admin/components/articles-list.css" />
     <link rel="stylesheet" href="./css/admin/components/chart.css" />
     <link rel="stylesheet" href="./css/admin/components/last-activity.css" />
+    <link rel="stylesheet" href="./css/admin/components/users-list.css" />
     <title>Vanilla CMS</title>
 </head>
 

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Admin\Controller\AdminPagesController;
+use App\Admin\Controller\AdminUsersController;
 use App\Frontend\Controller\ArticlesController;
 use App\Frontend\Controller\CommentsController;
 use App\Frontend\Controller\NotFoundController;
@@ -34,6 +35,7 @@ $commentsController = new CommentsController($authService, $commentsRepository, 
 $usersController = new UsersController($authService, $flashMessages);
 $profileController = new ProfileController($authService, $flashMessages);
 $adminPagesController = new AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
+$adminUsersController = new AdminUsersController();
 $notFoundController = new NotFoundController($authService);
 
 $route = (string) ($_GET['route'] ?? 'pages');
@@ -116,6 +118,10 @@ switch ($route) {
         $adminPagesController->deleteArticle();
         break;
 
+    case 'admin/users/list':
+        $adminUsersController->showUsers();
+
+        // no break
     default:
         $notFoundController->error404();
 }
