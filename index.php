@@ -13,6 +13,7 @@ use App\Frontend\Controller\UsersController;
 use App\Repository\ArticlesRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\UsersRepository;
+use App\Repository\UsersListRepository;
 use App\Service\AuthService;
 use App\Service\CsrfService;
 use App\Service\FlashMessages;
@@ -23,6 +24,7 @@ require __DIR__ . '/inc/all.inc.php';
 $usersRepository = new UsersRepository($pdo);
 $articlesRepository = new ArticlesRepository($pdo);
 $commentsRepository = new CommentsRepository($pdo);
+$usersListRepository = new UsersListRepository($pdo);
 
 $authService = new AuthService($usersRepository);
 $csrfService = new CsrfService();
@@ -35,7 +37,7 @@ $commentsController = new CommentsController($authService, $commentsRepository, 
 $usersController = new UsersController($authService, $flashMessages);
 $profileController = new ProfileController($authService, $flashMessages);
 $adminPagesController = new AdminPagesController($articlesRepository, $imageUploader, $flashMessages);
-$adminUsersController = new AdminUsersController();
+$adminUsersController = new AdminUsersController($usersListRepository);
 $notFoundController = new NotFoundController($authService);
 
 $route = (string) ($_GET['route'] ?? 'pages');
@@ -121,7 +123,7 @@ switch ($route) {
     case 'admin/users/list':
         $adminUsersController->showUsers();
 
-        // no break
+        break;
     default:
         $notFoundController->error404();
 }
