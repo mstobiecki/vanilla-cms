@@ -62,7 +62,7 @@ class UsersRepository
 
     public function findUserByEmail(string $email): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT `id`, `password_hash` FROM `users` WHERE `email` = :email");
+        $stmt = $this->pdo->prepare("SELECT `id`, `password_hash`, `is_blocked` FROM `users` WHERE `email` = :email");
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -71,7 +71,7 @@ class UsersRepository
 
     public function findUserById(int $id): ?array
     {
-        $stmt = $this->pdo->prepare("SELECT `id`, `role`, `username`, `email` FROM `users` WHERE `id` = :id");
+        $stmt = $this->pdo->prepare("SELECT `id`, `role`, `username`, `email`, `is_blocked` FROM `users` WHERE `id` = :id");
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 

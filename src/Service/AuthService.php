@@ -10,6 +10,7 @@ class AuthService
 {
     private ?array $currentUser = null;
     private bool $currentUserLoaded = false;
+    private const USER_IS_BLOCKED = 1;
 
     public function __construct(private UsersRepository $usersRepository)
     {
@@ -80,7 +81,7 @@ class AuthService
         return $this->usersRepository->createAccount(email: $email, username: $username, passwordHash: password_hash($password, PASSWORD_DEFAULT));
     }
 
-    public function loginAccount(string $email, string $password)
+    public function loginAccount(string $email, string $password): void
     {
         $this->validateAddressEmail($email);
 
@@ -95,11 +96,15 @@ class AuthService
             throw new \InvalidArgumentException('Nieprawidłowy adres e-mail lub hasło.');
         }
 
-        ['id' => $id, 'password_hash' => $passwordHash] = $userAccount;
+        ['id' => $id, 'password_hash' => $passwordHash, 'is_blocked' => $isBlocked] = $userAccount;
 
 
         if (!password_verify($password, $passwordHash)) {
             throw new \InvalidArgumentException('Nieprawidłowy adres e-mail lub hasło.');
+        }
+
+        if ((int) $isBlocked === self::USER_IS_BLOCKED) {
+            throw new \InvalidArgumentException('Twoje konto zostało zablokowane.');
         }
 
         session_regenerate_id(true);
@@ -118,7 +123,7 @@ class AuthService
         if ($id > 0) {
             $this->currentUser = $this->usersRepository->findUserById($id);
 
-            if ($this->currentUser === null) {
+            if ($this->currentUser === null || (int) $this->currentUser['is_blocked'] === self::USER_IS_BLOCKED) {
                 $this->logoutAccount();
             }
         }
@@ -127,7 +132,6 @@ class AuthService
 
         return $this->currentUser;
     }
-
 
     public function logoutAccount()
     {
